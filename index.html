@@ -18,12 +18,11 @@
     text-align:center;
     height:100vh;
     width:100vw;
-    color:white;
-    transition: background 1s, color 0.5s;
-    overflow:hidden;
-    background: linear-gradient(135deg, #a0eaff, #ffffff); /* xanh nhạt → trắng */
+    color:#000;
+    background: linear-gradient(135deg, #a0eaff, #ffffff); /* gradient xanh nhạt */
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
+    overflow:hidden;
   }
 
   @keyframes gradientBG {
@@ -33,148 +32,68 @@
   }
 
   .avatar {
-    width:120px;
-    height:120px;
+    width:140px;
+    height:140px;
     border-radius:50%;
     border:3px solid currentColor;
     object-fit:cover;
-    margin-bottom:15px;
+    margin-bottom:20px;
+    box-shadow:0 0 20px rgba(0,0,0,0.2);
+  }
+
+  .intro-line {
+    font-size:24px;
+    margin:5px 0;
   }
 
   .name {
-    font-size:36px;
+    font-size:40px;
     font-weight:700;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:10px;
+    margin:10px 0;
   }
 
-  .tick {
-    width:24px;
-    height:24px;
-  }
-
-  .intro {
-    font-size:20px;
-    margin-bottom:25px;
-    height:28px; 
+  .dynamic {
+    font-size:28px;
+    font-weight:500;
+    height:34px; 
     overflow:hidden;
     position:relative;
   }
 
-  .intro span {
+  .dynamic span {
     position:absolute;
     opacity:0;
     transform:translateY(100%);
     transition: all 0.5s ease;
   }
 
-  .intro span.active {
+  .dynamic span.active {
     opacity:1;
     transform:translateY(0);
   }
 
-  .buttons {
-    margin-bottom:30px;
-  }
-
-  .toggle-btn {
-    padding:10px 25px;
-    font-size:14px;
-    cursor:pointer;
-    border:2px solid currentColor;
-    border-radius:5px;
-    background:transparent;
-    color:inherit;
-    transition:all 0.3s;
-  }
-
-  .toggle-btn:hover {
-    background:currentColor;
-    color:black;
-  }
-
-  .social-links {
-    display:flex;
-    gap:20px;
-    margin-bottom:20px;
-  }
-
-  .social-links a img {
-    width:45px;
-    height:45px;
-    border-radius:50%;
-    border:2px solid currentColor;
-    transition:transform 0.3s;
-  }
-
-  .social-links a img:hover {
-    transform:scale(1.15);
-  }
-
-  footer {
-    font-size:13px;
-    color:#555;
-  }
 </style>
 </head>
 <body>
 
 <img src="https://i.ibb.co/qMwqm7Rm/avatar.jpg" alt="Avatar" class="avatar">
 
-<div class="name">
-  Đặng Hoàng Anh
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Tick_green.svg/120px-Tick_green.svg.png" alt="Tick" class="tick">
-</div>
-
-<div class="intro" id="intro-text">
-  <span class="active">I'm a "Gamer."</span>
-  <span>Developer.</span>
-</div>
-
-<div class="buttons">
-  <button class="toggle-btn" onclick="toggleTheme()">Toggle Light/Dark</button>
-</div>
-
-<div class="social-links">
-  <a href="https://www.facebook.com/DHAnhhdzs1tg" target="_blank">
-    <img src="https://i.ibb.co/CKqCmtS9/fb.jpg" alt="Facebook">
-  </a>
-  <a href="https://www.tiktok.com/@anhdayanhfay" target="_blank">
-    <img src="https://i.ibb.co/KxtBXnPx/tiktok.jpg" alt="TikTok">
-  </a>
-  <a href="https://t.me/DHAnhhdzs1tg" target="_blank">
-    <img src="https://i.ibb.co/1fypknWx/tele.jpg" alt="Telegram">
-  </a>
-</div>
-
-<footer>© Bản quyền thuộc về Đặng Hoàng Anh. All rights reserved.</footer>
+<div class="intro-line">Hi, I am</div>
+<div class="name">Đặng Hoàng Anh</div>
+<div class="intro-line">and I'm a <span class="dynamic" id="dynamic-text">
+  <span class="active">Developer.</span>
+  <span>Gamer.</span>
+</span></div>
 
 <script>
-  // Animation chữ luân phiên
-  const introSpans = document.querySelectorAll('#intro-text span');
+  // Animation chữ Developer <-> Gamer
+  const dynamicSpans = document.querySelectorAll('#dynamic-text span');
   let current = 0;
   setInterval(() => {
-    introSpans[current].classList.remove('active');
-    current = (current + 1) % introSpans.length;
-    introSpans[current].classList.add('active');
+    dynamicSpans[current].classList.remove('active');
+    current = (current + 1) % dynamicSpans.length;
+    dynamicSpans[current].classList.add('active');
   }, 3000);
-
-  // Toggle Light/Dark
-  let isDark = false; // mặc định xanh nhạt → trắng
-  function toggleTheme() {
-    if(!isDark){
-      document.body.style.background = '#000000';
-      document.body.style.color = '#ffffff';
-      document.body.style.animation = 'none';
-    } else {
-      document.body.style.background = 'linear-gradient(135deg, #a0eaff, #ffffff)';
-      document.body.style.color = '#000000';
-      document.body.style.animation = 'gradientBG 15s ease infinite';
-    }
-    isDark = !isDark;
-  }
 </script>
 
 </body>
