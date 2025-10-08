@@ -16,7 +16,6 @@
       justify-content: center;
       height: 100vh;
       margin: 0;
-      overflow: hidden;
       text-align: center;
       backdrop-filter: blur(2px);
     }
@@ -69,25 +68,21 @@
     }
 
     .social-links {
-      margin-top: 30px;
+      margin-top: 25px;
       display: flex;
       gap: 15px;
-      flex-wrap: wrap;
       justify-content: center;
     }
 
-    .social-links a {
-      text-decoration: none;
-      color: white;
-      font-size: 1.1em;
-      background: rgba(255,255,255,0.15);
-      padding: 10px 15px;
-      border-radius: 20px;
-      transition: background 0.3s;
+    .social-links a img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      transition: transform 0.3s;
     }
 
-    .social-links a:hover {
-      background: rgba(255,255,255,0.3);
+    .social-links a img:hover {
+      transform: scale(1.1);
     }
 
     footer {
@@ -104,8 +99,7 @@
   <img src="https://i.imgur.com/9cNkOPE.jpeg" alt="Ảnh đại diện">
   <div class="name">Đặng Hoàng Anh</div>
   <div class="intro">
-    Xin chào! Mình là <b>Đặng Hoàng Anh</b> — người đam mê công nghệ, thích sáng tạo và chia sẻ những điều tích cực.<br>
-    Âm nhạc và sự chân thành là thứ giúp mình kết nối với mọi người 🎧
+    Xin chào! Tôi là <b>Đặng Hoàng Anh Developer</b> — người đam mê công nghệ và âm nhạc. 🎧
   </div>
 
   <div class="music-controls">
@@ -115,9 +109,15 @@
   </div>
 
   <div class="social-links">
-    <a href="https://www.facebook.com/DHAnhhdzs1tg" target="_blank">🔵 Facebook</a>
-    <a href="https://www.tiktok.com/@anhdayanhfay" target="_blank">🎵 TikTok</a>
-    <a href="https://t.me/DHAnhhdzs1tg" target="_blank">💬 Telegram</a>
+    <a href="https://www.facebook.com/DHAnhhdzs1tg" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+    </a>
+    <a href="https://www.tiktok.com/@anhdayanhfay" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok">
+    </a>
+    <a href="https://t.me/DHAnhhdzs1tg" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
+    </a>
   </div>
 
   <footer>
