@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu - Đặng Hoàng Anh</title>
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298, #243B55);
+            background-size: 400% 400%;
+            color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            animation: bgMove 20s infinite alternate ease-in-out;
+            transition: background 1s;
+        }
+
+        @keyframes bgMove {
+            from { background-position: left; }
+            to { background-position: right; }
+        }
+
+        img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #f0f0f0;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+            animation-delay: 1s;
+        }
+
+        .name {
+            font-size: 2.5em;
+            font-weight: bold;
+            animation: blink 1s infinite alternate;
+            opacity: 0;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes blink {
+            0% { opacity: 0.3; text-shadow: 0 0 10px white; }
+            100% { opacity: 1; text-shadow: 0 0 25px white, 0 0 50px white; }
+        }
+
+        .intro {
+            opacity: 0;
+            margin-top: 20px;
+            font-size: 1.1em;
+            line-height: 1.6;
+            max-width: 600px;
+            text-align: center;
+            color: #e8e8e8;
+            animation: slideUp 1.5s forwards;
+            animation-delay: 3s;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .music-controls {
+            margin-top: 25px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            animation-delay: 4.5s;
+        }
+
+        button {
+            background-color: #f0f0f0;
+            color: #1e3c72;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        .social-links {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            animation-delay: 5s;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+            background: rgba(255,255,255,0.15);
+            padding: 10px 15px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            font-size: 0.9em;
+            color: #ccc;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .toggle-bg {
+            position: absolute;
+            bottom: 60px;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            font-size: 0.9em;
+            border: none;
+            padding: 6px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle-bg:hover {
+            background: rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <img src="https://i.imgur.com/9cNkOPE.jpeg" alt="Ảnh đại diện">
+    <div class="name">Đặng Hoàng Anh</div>
+    <div class="intro">
+        Xin chào! Mình là <b>Đặng Hoàng Anh</b> — người đam mê công nghệ, thích sáng tạo và chia sẻ những điều tích cực.  
+        Mình tin rằng âm nhạc và sự chân thành có thể kết nối tất cả chúng ta 🎧
+    </div>
+
+    <div class="music-controls">
+        <button id="playPauseBtn">▶️ Phát nhạc</button>
+        <button id="nextSongBtn">⏭️ Chuyển bài</button>
+        <p id="songName">🎶 Bài hiện tại: Chưa phát</p>
+    </div>
+
+    <div class="social-links">
+        <a href="https://www.facebook.com/DHAnhhdzs1tg" target="_blank">🔵 Facebook</a>
+        <a href="https://www.tiktok.com/@anhdayanhfay" target="_blank">🎵 TikTok</a>
+        <a href="https://t.me/DHAnhhdzs1tg" target="_blank">💬 Telegram</a>
+    </div>
+
+    <button class="toggle-bg" id="toggleBgBtn">🧘 Nền chill: Bật</button>
+
+    <footer>
+        © Bản quyền thuộc về Đặng Hoàng Anh.<br>
+        © Copyright by Đặng Hoàng Anh ☞ All rights reserved.
+    </footer>
+
+    <audio id="music" preload="auto"></audio>
+
+    <script>
+        const songs = [
+            {
+                name: "10 Ngàn Năm - Đen x Ngọc Linh",
+                src: "https://files.catbox.moe/rlhrbi.mp3"
+            },
+            {
+                name: "Thằng Điên - JustaTee x Phương Ly",
+                src: "https://files.catbox.moe/eqwl6h.mp3"
+            }
+        ];
+
+        let currentSong = 0;
+        const audio = document.getElementById('music');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const nextSongBtn = document.getElementById('nextSongBtn');
+        const songName = document.getElementById('songName');
+        const toggleBgBtn = document.getElementById('toggleBgBtn');
+        const body = document.body;
+        let isPlaying = false;
+        let bgAnimated = true;
+
+        playPauseBtn.addEventListener('click', () => {
+            if (!isPlaying) {
+                audio.src = songs[currentSong].src;
+                audio.play();
+                playPauseBtn.textContent = '⏸️ Dừng';
+                songName.textContent = '🎶 Đang phát: ' + songs[currentSong].name;
+            } else {
+                audio.pause();
+                playPauseBtn.textContent = '▶️ Phát nhạc';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        nextSongBtn.addEventListener('click', () => {
+            currentSong = (currentSong + 1) % songs.length;
+            audio.src = songs[currentSong].src;
+            audio.play();
+            isPlaying = true;
+            playPauseBtn.textContent = '⏸️ Dừng';
+            songName.textContent = '🎶 Đang phát: ' + songs[currentSong].name;
+        });
+
+        toggleBgBtn.addEventListener('click', () => {
+            bgAnimated = !bgAnimated;
+            if (bgAnimated) {
+                body.style.animation = 'bgMove 20s infinite alternate ease-in-out';
+                toggleBgBtn.textContent = '🧘 Nền chill: Bật';
+            } else {
+                body.style.animation = 'none';
+                toggleBgBtn.textContent = '🧘 Nền chill: Tắt';
+            }
+        });
+    </script>
+</body>
+</html>
