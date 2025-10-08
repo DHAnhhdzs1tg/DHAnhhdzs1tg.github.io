@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giới thiệu - Đặng Hoàng Anh</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: url("https://i.ibb.co/2136q11H/bg.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      text-align: center;
+      backdrop-filter: blur(2px);
+    }
+
+    img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #f0f0f0;
+      margin-bottom: 20px;
+    }
+
+    .name {
+      font-size: 2.5em;
+      font-weight: bold;
+      animation: blink 1s infinite alternate;
+    }
+
+    @keyframes blink {
+      0% { opacity: 0.5; text-shadow: 0 0 10px white; }
+      100% { opacity: 1; text-shadow: 0 0 25px white, 0 0 50px white; }
+    }
+
+    .intro {
+      margin-top: 15px;
+      font-size: 1.1em;
+      line-height: 1.6;
+      max-width: 600px;
+      color: #e8e8e8;
+    }
+
+    .music-controls {
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #f0f0f0;
+      color: #1e3c72;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 5px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #ddd;
+    }
+
+    .social-links {
+      margin-top: 30px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .social-links a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.1em;
+      background: rgba(255,255,255,0.15);
+      padding: 10px 15px;
+      border-radius: 20px;
+      transition: background 0.3s;
+    }
+
+    .social-links a:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.9em;
+      color: #ccc;
+      text-align: center;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <img src="https://i.imgur.com/9cNkOPE.jpeg" alt="Ảnh đại diện">
+  <div class="name">Đặng Hoàng Anh</div>
+  <div class="intro">
+    Xin chào! Mình là <b>Đặng Hoàng Anh</b> — người đam mê công nghệ, thích sáng tạo và chia sẻ những điều tích cực.<br>
+    Âm nhạc và sự chân thành là thứ giúp mình kết nối với mọi người 🎧
+  </div>
+
+  <div class="music-controls">
+    <button id="playPauseBtn">▶️ Bật nhạc</button>
+    <button id="nextSongBtn">⏭️ Chuyển bài</button>
+    <p id="songName">🎶 Chưa phát nhạc</p>
+  </div>
+
+  <div class="social-links">
+    <a href="https://www.facebook.com/DHAnhhdzs1tg" target="_blank">🔵 Facebook</a>
+    <a href="https://www.tiktok.com/@anhdayanhfay" target="_blank">🎵 TikTok</a>
+    <a href="https://t.me/DHAnhhdzs1tg" target="_blank">💬 Telegram</a>
+  </div>
+
+  <footer>
+    © Bản quyền thuộc về Đặng Hoàng Anh.<br>
+    © Copyright by Đặng Hoàng Anh ☞ All rights reserved.
+  </footer>
+
+  <audio id="music" preload="auto"></audio>
+
+  <script>
+    const songs = [
+      { name: "10 Ngàn Năm - Đen x Ngọc Linh", src: "https://files.catbox.moe/rlhrbi.mp3" },
+      { name: "Thằng Điên - JustaTee x Phương Ly", src: "https://files.catbox.moe/eqwl6h.mp3" }
+    ];
+
+    let currentSong = 0;
+    const audio = document.getElementById('music');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const nextSongBtn = document.getElementById('nextSongBtn');
+    const songName = document.getElementById('songName');
+    let isPlaying = false;
+
+    playPauseBtn.addEventListener('click', () => {
+      if (!isPlaying) {
+        audio.src = songs[currentSong].src;
+        audio.play();
+        playPauseBtn.textContent = '⏸️ Tắt nhạc';
+        songName.textContent = '🎶 Đang phát: ' + songs[currentSong].name;
+      } else {
+        audio.pause();
+        playPauseBtn.textContent = '▶️ Bật nhạc';
+        songName.textContent = '🎶 Đã tắt nhạc';
+      }
+      isPlaying = !isPlaying;
+    });
+
+    nextSongBtn.addEventListener('click', () => {
+      currentSong = (currentSong + 1) % songs.length;
+      audio.src = songs[currentSong].src;
+      audio.play();
+      isPlaying = true;
+      playPauseBtn.textContent = '⏸️ Tắt nhạc';
+      songName.textContent = '🎶 Đang phát: ' + songs[currentSong].name;
+    });
+  </script>
+</body>
+</html>
