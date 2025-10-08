@@ -21,7 +21,7 @@
     color:white;
     transition: background 1s, color 0.5s;
     overflow:hidden;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background: linear-gradient(135deg, #a0eaff, #ffffff); /* xanh nhạt → trắng */
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
   }
@@ -48,7 +48,6 @@
     align-items:center;
     gap:10px;
     margin-bottom:10px;
-    animation: fadeIn 2s ease forwards;
   }
 
   .tick {
@@ -56,15 +55,10 @@
     height:24px;
   }
 
-  @keyframes fadeIn {
-    0% {opacity:0; transform:translateY(-20px);}
-    100% {opacity:1; transform:translateY(0);}
-  }
-
   .intro {
     font-size:20px;
     margin-bottom:25px;
-    height:28px; /* cố định chiều cao để animation mượt */
+    height:28px; 
     overflow:hidden;
     position:relative;
   }
@@ -121,7 +115,7 @@
 
   footer {
     font-size:13px;
-    color:#ddd;
+    color:#555;
   }
 </style>
 </head>
@@ -158,7 +152,7 @@
 <footer>© Bản quyền thuộc về Đặng Hoàng Anh. All rights reserved.</footer>
 
 <script>
-  // Animation text intro
+  // Animation chữ luân phiên
   const introSpans = document.querySelectorAll('#intro-text span');
   let current = 0;
   setInterval(() => {
@@ -167,16 +161,16 @@
     introSpans[current].classList.add('active');
   }, 3000);
 
-  // Toggle Light/Dark Theme
-  let isDark = true;
+  // Toggle Light/Dark
+  let isDark = false; // mặc định xanh nhạt → trắng
   function toggleTheme() {
-    if(isDark){
-      document.body.style.background = '#ffffff';
-      document.body.style.color = '#000000';
+    if(!isDark){
+      document.body.style.background = '#000000';
+      document.body.style.color = '#ffffff';
       document.body.style.animation = 'none';
     } else {
-      document.body.style.background = 'linear-gradient(135deg, #1e3c72, #2a5298)';
-      document.body.style.color = '#ffffff';
+      document.body.style.background = 'linear-gradient(135deg, #a0eaff, #ffffff)';
+      document.body.style.color = '#000000';
       document.body.style.animation = 'gradientBG 15s ease infinite';
     }
     isDark = !isDark;
