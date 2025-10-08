@@ -3,31 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Đặng Hoàng Anh</title>
+  <title>Đặng Hoàng Anh - Chọn nền</title>
   <style>
-    body {
-      font-family: "Poppins", sans-serif;
+    /* Reset cơ bản */
+    * {
       margin: 0;
       padding: 0;
-      background: url('https://i.ibb.co/4RkSymWd/background.jpg') no-repeat center center fixed;
-      background-size: cover;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
       height: 100vh;
-      color: white;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      position: relative;
-    }
-
-    /* Không dùng overlay hoặc quá mờ */
-    body::after {
-      content: '';
-      position: absolute;
-      top:0; left:0; right:0; bottom:0;
-      background: rgba(0,0,0,0); /* overlay tắt hoàn toàn */
-      z-index: 0;
+      color: white; /* Mặc định chữ trắng trên nền đen */
+      background-color: black; /* Mặc định nền đen */
+      transition: background-color 0.3s, color 0.3s;
     }
 
     .avatar {
@@ -35,37 +30,48 @@
       height: 110px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid white;
-      box-shadow: none; /* loại bỏ glow để nền rõ */
+      border: 3px solid currentColor; /* màu viền theo màu chữ */
       margin-bottom: 15px;
-      position: relative;
-      z-index: 1;
     }
 
     .name {
       font-size: 32px;
       font-weight: bold;
-      color: white;
-      text-shadow: none; /* loại bỏ text-shadow */
-      position: relative;
-      z-index: 1;
+      margin-bottom: 10px;
     }
 
     .intro {
       font-size: 16px;
-      margin: 15px 0 25px;
-      color: #f0f0f0;
-      position: relative;
-      z-index: 1;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .buttons button {
+      padding: 10px 20px;
+      font-size: 14px;
+      cursor: pointer;
+      border: 2px solid currentColor;
+      border-radius: 5px;
+      background: transparent;
+      color: inherit;
+      transition: all 0.3s;
+    }
+
+    .buttons button:hover {
+      background: currentColor;
+      color: black;
     }
 
     .social-links {
       display: flex;
       justify-content: center;
       gap: 25px;
-      margin-top: 10px;
-      position: relative;
-      z-index: 1;
+      margin-bottom: 20px;
     }
 
     .social-links a img {
@@ -73,7 +79,7 @@
       height: 45px;
       border-radius: 50%;
       transition: transform 0.3s;
-      border: 2px solid white;
+      border: 2px solid currentColor;
     }
 
     .social-links a img:hover {
@@ -81,16 +87,11 @@
     }
 
     footer {
-      position: absolute;
-      bottom: 10px;
       font-size: 13px;
-      color: #ddd;
       text-align: center;
-      z-index: 1;
     }
   </style>
 </head>
-
 <body>
   <img src="https://i.ibb.co/qMwqm7Rm/avatar.jpg" alt="Avatar" class="avatar" />
 
@@ -98,6 +99,12 @@
   <p class="intro">
     Xin chào! Tôi là <strong>Đặng Hoàng Anh</strong> - Developer, người đam mê công nghệ và âm nhạc.
   </p>
+
+  <!-- Nút chuyển màu nền -->
+  <div class="buttons">
+    <button onclick="setBackground('black')">Nền Đen</button>
+    <button onclick="setBackground('white')">Nền Trắng</button>
+  </div>
 
   <div class="social-links">
     <a href="https://www.facebook.com/DHAnhhdzs1tg" target="_blank">
@@ -115,5 +122,16 @@
     © Bản quyền thuộc về Đặng Hoàng Anh. <br>
     © Copyright by Đặng Hoàng Anh ☞ All rights reserved.
   </footer>
+
+  <script>
+    function setBackground(color) {
+      document.body.style.backgroundColor = color;
+      if(color === 'black') {
+        document.body.style.color = 'white';
+      } else {
+        document.body.style.color = 'black';
+      }
+    }
+  </script>
 </body>
 </html>
