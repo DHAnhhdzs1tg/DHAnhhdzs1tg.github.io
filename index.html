@@ -1,128 +1,127 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Đặng Hoàng Anh</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đặng Hoàng Anh</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-  * { margin:0; padding:0; box-sizing:border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  body {
-    font-family: 'Poppins', sans-serif;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    height:100vh;
-    width:100vw;
-    color:#000;
-    background: linear-gradient(135deg, #a0eaff, #ffffff);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    overflow:hidden;
-  }
+    body {
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100vh;
+      width: 100vw;
+      color: #000;
+      background: linear-gradient(135deg, #a0eaff, #ffffff);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      overflow: hidden;
+    }
 
-  @keyframes gradientBG {
-    0% {background-position:0% 50%;}
-    50% {background-position:100% 50%;}
-    100% {background-position:0% 50%;}
-  }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-  .avatar {
-    width:140px;
-    height:140px;
-    border-radius:50%;
-    border:3px solid currentColor;
-    object-fit:cover;
-    margin-bottom:20px;
-    box-shadow:0 0 20px rgba(0,0,0,0.2);
-  }
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 3px solid currentColor;
+      object-fit: cover;
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
 
-  .intro-line {
-    font-size:24px;
-    margin:5px 0;
-  }
+    .intro-line {
+      font-size: 24px;
+      margin: 5px 0;
+    }
 
-  .name {
-    font-size:40px;
-    font-weight:700;
-    margin:10px 0;
-  }
+    .name {
+      font-size: 40px;
+      font-weight: 700;
+      margin: 10px 0;
+    }
 
-  .dynamic-container {
-    font-size:32px;
-    font-weight:700;
-    height:40px;
-    overflow:hidden;
-    position:relative;
-    display:inline-block;
-    background: linear-gradient(90deg, #ff6ec4, #7873f5, #3af2ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientText 3s ease infinite;
-  }
+    .dynamic-container {
+      font-size: 32px;
+      font-weight: 700;
+      height: 40px;
+      overflow: hidden;
+      position: relative;
+      display: inline-block;
+      background: linear-gradient(90deg, #ff6ec4, #7873f5, #3af2ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientText 3s ease infinite;
+    }
 
-  @keyframes gradientText {
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-  }
+    @keyframes gradientText {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-  .dynamic-container span {
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    opacity:0;
-    transform:translateY(100%);
-    transition: all 0.6s ease;
-  }
+    .dynamic-container span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: all 0.6s ease;
+    }
 
-  .dynamic-container span.active {
-    opacity:1;
-    transform:translateY(0);
-  }
+    .dynamic-container span.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-  .dynamic-container span.prev {
-    opacity:0;
-    transform:translateY(-100%);
-  }
-
-</style>
+    .dynamic-container span.prev {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+  </style>
 </head>
 <body>
 
-<img src="https://i.ibb.co/qMwqm7Rm/avatar.jpg" alt="Avatar" class="avatar">
+  <img src="https://i.ibb.co/qMwqm7Rm/avatar.jpg" alt="Avatar" class="avatar">
 
-<div class="intro-line">Hi, I am</div>
-<div class="name">Đặng Hoàng Anh</div>
-<div class="intro-line">and I'm a <span class="dynamic-container" id="dynamic-text">
-  <span class="active">Developer.</span>
-  <span>Gamer.</span>
-</span></div>
+  <div class="intro-line">Hi, I am</div>
+  <div class="name">Đặng Hoàng Anh</div>
+  <div class="intro-line">and I'm a <span class="dynamic-container" id="dynamic-text">
+    <span class="active">Developer.</span>
+    <span>Gamer.</span>
+  </span></div>
 
-<script>
-  const dynamicSpans = document.querySelectorAll('#dynamic-text span');
-  let current = 0;
+  <script>
+    const dynamicSpans = document.querySelectorAll('#dynamic-text span');
+    let current = 0;
 
-  setInterval(() => {
-    const prev = current;
-    current = (current + 1) % dynamicSpans.length;
+    setInterval(() => {
+      const prev = current;
+      current = (current + 1) % dynamicSpans.length;
 
-    dynamicSpans[prev].classList.remove('active');
-    dynamicSpans[prev].classList.add('prev');
+      dynamicSpans[prev].classList.remove('active');
+      dynamicSpans[prev].classList.add('prev');
 
-    dynamicSpans[current].classList.add('active');
+      dynamicSpans[current].classList.add('active');
 
-    setTimeout(() => {
-      dynamicSpans[prev].classList.remove('prev');
-    }, 600);
+      setTimeout(() => {
+        dynamicSpans[prev].classList.remove('prev');
+      }, 600);
 
-  }, 3000);
-</script>
+    }, 3000);
+  </script>
 
 </body>
 </html>
