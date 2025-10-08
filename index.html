@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Giới thiệu - Đặng Hoàng Anh</title>
+  <title>Đặng Hoàng Anh - Developer</title>
   <style>
     body {
       font-family: "Segoe UI", sans-serif;
@@ -17,19 +17,27 @@
       height: 100vh;
       margin: 0;
       text-align: center;
-      backdrop-filter: blur(2px);
+      overflow: hidden;
     }
 
-    img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 3px solid #f0f0f0;
-      margin-bottom: 20px;
+    /* Hiệu ứng sóng nhạc */
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.25;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
     }
 
     .name {
-      font-size: 2.5em;
+      font-size: 2.8em;
       font-weight: bold;
       animation: blink 1s infinite alternate;
     }
@@ -41,21 +49,21 @@
 
     .intro {
       margin-top: 15px;
-      font-size: 1.1em;
+      font-size: 1.2em;
       line-height: 1.6;
       max-width: 600px;
       color: #e8e8e8;
     }
 
     .music-controls {
-      margin-top: 20px;
+      margin-top: 25px;
     }
 
     button {
       background-color: #f0f0f0;
       color: #1e3c72;
       border: none;
-      padding: 8px 15px;
+      padding: 10px 18px;
       border-radius: 30px;
       font-weight: bold;
       cursor: pointer;
@@ -68,21 +76,22 @@
     }
 
     .social-links {
-      margin-top: 25px;
+      margin-top: 30px;
       display: flex;
-      gap: 15px;
+      gap: 20px;
       justify-content: center;
     }
 
     .social-links a img {
-      width: 40px;
-      height: 40px;
+      width: 55px;
+      height: 55px;
       border-radius: 50%;
-      transition: transform 0.3s;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .social-links a img:hover {
-      transform: scale(1.1);
+    .social-links a:hover img {
+      transform: scale(1.2) rotate(-3deg);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
     }
 
     footer {
@@ -92,42 +101,74 @@
       color: #ccc;
       text-align: center;
       line-height: 1.4;
+      z-index: 2;
     }
   </style>
 </head>
 <body>
-  <img src="https://i.imgur.com/9cNkOPE.jpeg" alt="Ảnh đại diện">
-  <div class="name">Đặng Hoàng Anh</div>
-  <div class="intro">
-    Xin chào! Tôi là <b>Đặng Hoàng Anh Developer</b> — người đam mê công nghệ và âm nhạc. 🎧
-  </div>
+  <canvas id="waveCanvas"></canvas>
 
-  <div class="music-controls">
-    <button id="playPauseBtn">▶️ Bật nhạc</button>
-    <button id="nextSongBtn">⏭️ Chuyển bài</button>
-    <p id="songName">🎶 Chưa phát nhạc</p>
-  </div>
+  <div class="content">
+    <div class="name">Đặng Hoàng Anh</div>
+    <div class="intro">
+      Xin chào! Tôi là <b>Đặng Hoàng Anh Developer</b> — người đam mê công nghệ và âm nhạc. 🎧
+    </div>
 
-  <div class="social-links">
-    <a href="https://www.facebook.com/DHAnhhdzs1tg" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
-    </a>
-    <a href="https://www.tiktok.com/@anhdayanhfay" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok">
-    </a>
-    <a href="https://t.me/DHAnhhdzs1tg" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
-    </a>
-  </div>
+    <div class="music-controls">
+      <button id="playPauseBtn">▶️ Bật nhạc</button>
+      <button id="nextSongBtn">⏭️ Chuyển bài</button>
+      <p id="songName">🎶 Chưa phát nhạc</p>
+    </div>
 
-  <footer>
-    © Bản quyền thuộc về Đặng Hoàng Anh.<br>
-    © Copyright by Đặng Hoàng Anh ☞ All rights reserved.
-  </footer>
+    <div class="social-links">
+      <a href="https://www.facebook.com/DHAnhhdzs1tg" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+      </a>
+      <a href="https://www.tiktok.com/@anhdayanhfay" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok">
+      </a>
+      <a href="https://t.me/DHAnhhdzs1tg" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
+      </a>
+    </div>
+
+    <footer>
+      © Bản quyền thuộc về Đặng Hoàng Anh.<br>
+      © Copyright by Đặng Hoàng Anh ☞ All rights reserved.
+    </footer>
+  </div>
 
   <audio id="music" preload="auto"></audio>
 
   <script>
+    // --- Sóng nhạc chill ---
+    const canvas = document.getElementById("waveCanvas");
+    const ctx = canvas.getContext("2d");
+    let w, h;
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    let t = 0;
+    function drawWave() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.beginPath();
+      for (let x = 0; x < w; x++) {
+        let y = h / 2 + Math.sin(x * 0.01 + t) * 20 * Math.sin(t * 0.5);
+        ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = "rgba(255,255,255,0.4)";
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      t += 0.02;
+      requestAnimationFrame(drawWave);
+    }
+    drawWave();
+
+    // --- Nhạc ---
     const songs = [
       { name: "10 Ngàn Năm - Đen x Ngọc Linh", src: "https://files.catbox.moe/rlhrbi.mp3" },
       { name: "Thằng Điên - JustaTee x Phương Ly", src: "https://files.catbox.moe/eqwl6h.mp3" }
@@ -140,24 +181,28 @@
     const songName = document.getElementById('songName');
     let isPlaying = false;
 
-    playPauseBtn.addEventListener('click', () => {
-      if (!isPlaying) {
-        audio.src = songs[currentSong].src;
-        audio.play();
-        playPauseBtn.textContent = '⏸️ Tắt nhạc';
-        songName.textContent = '🎶 Đang phát: ' + songs[currentSong].name;
-      } else {
-        audio.pause();
-        playPauseBtn.textContent = '▶️ Bật nhạc';
-        songName.textContent = '🎶 Đã tắt nhạc';
+    playPauseBtn.addEventListener('click', async () => {
+      try {
+        if (!isPlaying) {
+          audio.src = songs[currentSong].src;
+          await audio.play();
+          playPauseBtn.textContent = '⏸️ Tắt nhạc';
+          songName.textContent = '🎶 Đang phát: ' + songs[currentSong].name;
+        } else {
+          audio.pause();
+          playPauseBtn.textContent = '▶️ Bật nhạc';
+          songName.textContent = '🎶 Đã tắt nhạc';
+        }
+        isPlaying = !isPlaying;
+      } catch (err) {
+        alert("⚠️ Trình duyệt chặn phát nhạc tự động. Hãy thử bấm lại nút ▶️ nhé!");
       }
-      isPlaying = !isPlaying;
     });
 
-    nextSongBtn.addEventListener('click', () => {
+    nextSongBtn.addEventListener('click', async () => {
       currentSong = (currentSong + 1) % songs.length;
       audio.src = songs[currentSong].src;
-      audio.play();
+      await audio.play();
       isPlaying = true;
       playPauseBtn.textContent = '⏸️ Tắt nhạc';
       songName.textContent = '🎶 Đang phát: ' + songs[currentSong].name;
