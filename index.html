@@ -18,6 +18,16 @@
       justify-content: center;
       align-items: center;
       text-align: center;
+      position: relative;
+    }
+
+    /* Overlay nhẹ nếu muốn chữ nổi bật mà nền vẫn rõ */
+    body::after {
+      content: '';
+      position: absolute;
+      top:0; left:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.15); /* overlay rất nhẹ */
+      z-index: 0;
     }
 
     .avatar {
@@ -26,32 +36,38 @@
       border-radius: 50%;
       object-fit: cover;
       border: 3px solid white;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.5); /* glow nhẹ */
       margin-bottom: 15px;
       animation: glow 2s infinite alternate;
+      position: relative;
+      z-index: 1; /* nổi trên overlay */
     }
 
     @keyframes glow {
-      from { box-shadow: 0 0 5px rgba(255,255,255,0.4); }
-      to { box-shadow: 0 0 20px rgba(255,255,255,1); }
+      from { box-shadow: 0 0 5px rgba(255,255,255,0.3); }
+      to { box-shadow: 0 0 15px rgba(255,255,255,0.6); }
     }
 
     .name {
       font-size: 32px;
       font-weight: bold;
       color: white;
-      text-shadow: 0 0 15px rgba(255,255,255,0.6);
+      text-shadow: 0 0 5px rgba(255,255,255,0.3); /* giảm shadow để nền rõ */
       animation: blink 1s infinite;
+      position: relative;
+      z-index: 1;
     }
 
     @keyframes blink {
-      50% { opacity: 0.6; }
+      50% { opacity: 0.8; }
     }
 
     .intro {
       font-size: 16px;
       margin: 15px 0 25px;
       color: #f0f0f0;
+      position: relative;
+      z-index: 1;
     }
 
     .social-links {
@@ -59,6 +75,8 @@
       justify-content: center;
       gap: 25px;
       margin-top: 10px;
+      position: relative;
+      z-index: 1;
     }
 
     .social-links a img {
@@ -79,6 +97,7 @@
       font-size: 13px;
       color: #ddd;
       text-align: center;
+      z-index: 1;
     }
   </style>
 </head>
