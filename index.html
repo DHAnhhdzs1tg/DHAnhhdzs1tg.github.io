@@ -1,227 +1,124 @@
 <!DOCTYPE html>
 <html lang="vi">
- 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🇻🇳 𝐃𝐚𝐧𝐠 𝐇𝐨𝐚𝐧𝐠 𝐀𝐧𝐡 🇻🇳</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('https://i.imgur.com/pXTar6o.jpeg');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            overflow: hidden;
-        }
- 
-        .container {
-            max-width: 600px;
-            margin: auto;
-            padding: 5px;
-            text-align: center;
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-        }
- 
-        .profile-img {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 8px;
-            border: 3px solid transparent;
-            background-image: linear-gradient(45deg, silver, white, silver);
-            background-clip: border-box;
-            animation: border-animation 5s infinite alternate;
-            transition: transform 0.3s;
-        }
- 
-        .profile-img:hover {
-            transform: scale(1.05);
-        }
- 
-        @keyframes border-animation {
-            0% {
-                border-color: white;
-            }
- 
-            100% {
-                border-color: black;
-            }
-        }
- 
-        h1,
-        p {
-            margin: 6px 0;
-            color: white;
-            transition: opacity 0.2s;
-        }
- 
-        nav {
-            margin-top: 8px;
-        }
- 
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
- 
-        nav ul li {
-            margin: 8px 0;
-        }
- 
-        nav ul li a {
-            display: inline-block;
-            text-decoration: none;
-            color: black;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 8px 15px;
-            border-radius: 30px;
-            border: 2px solid white;
-            font-weight: bold;
-            transition: background-color 0.3s, transform 0.2s;
-        }
- 
-        nav ul li a:hover {
-            background-color: rgba(240, 240, 240, 0.9);
-            transform: scale(1.05);
-        }
- 
-        footer {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 12px;
-            color: #777;
-        }
- 
-        .music-controls {
-            margin-top: 8px;
-        }
- 
-        .music-controls button {
-            padding: 7px 12px;
-            border: none;
-            border-radius: 5px;
-            background-color: white;
-            color: black;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
- 
-        .music-controls button:hover {
-            background-color: rgba(240, 240, 240, 0.9);
-        }
- 
-        .name {
-            font-size: 30px;
-            font-weight: bold;
-            background: linear-gradient(to right, white, gray, black);
-            background-size: 200%;
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: text-gradient 5s infinite alternate;
-        }
- 
-        @keyframes text-gradient {
-            0% {
-                background-position: 0%;
-            }
- 
-            100% {
-                background-position: 100%;
-            }
-        }
- 
-        .social-logo {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            margin-right: 5px;
-            vertical-align: middle;
-            object-fit: cover;
-            background-color: black;
-        }
- 
-        .glow {
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5);
-            animation: glow-animation 0.5s infinite alternate;
-        }
- 
-        @keyframes glow-animation {
-            from {
-                text-shadow: 0 0 5px rgba(255, 255, 255, 0.3), 0 0 10px rgba(255, 255, 255, 0.2);
-            }
- 
-            to {
-                text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.7);
-            }
-        }
- 
-        .glow-avatar {
-            animation: glow-avatar-animation 0.5s infinite alternate;
-        }
- 
-        @keyframes glow-avatar-animation {
-            from {
-                box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
-            }
- 
-            to {
-                box-shadow: 0 0 20px rgba(255, 255, 255, 1);
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đặng Hoàng Anh</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  height:100vh;
+  width:100vw;
+  background: linear-gradient(135deg, #a0eaff, #ffffff);
+  overflow:hidden;
+}
+
+.avatar {
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  border:3px solid currentColor;
+  object-fit:cover;
+  margin:20px 0;
+  box-shadow:0 0 20px rgba(0,0,0,0.2);
+}
+
+.intro-line {
+  font-size:24px;
+  margin:5px 0;
+}
+
+.name-wrapper {
+  font-size:40px;
+  font-weight:700;
+  color:#5DADE2; /* xanh dương nhạt */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+.checkmark {
+  width:25px;
+  height:25px;
+  display:inline-block;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/5582/5582932.png');
+  background-size: cover;
+}
+
+.dynamic-text {
+  font-size:28px;
+  font-weight:700;
+  color:#FF69B4; /* hồng nhạt */
+  min-height:36px;
+  display:inline-block;
+  position:relative;
+}
+
+/* Con trỏ nháy ở chữ Developer/Gamer */
+.dynamic-text::after {
+  content: '|';
+  position: absolute;
+  right: -10px;
+  animation: blink 0.7s steps(1) infinite;
+}
+
+@keyframes blink {
+  0%,50%,100% {opacity:1;}
+  25%,75% {opacity:0;}
+}
+</style>
 </head>
- 
 <body>
-    <audio id="background-music" preload="auto" loop>
-        <source src="https://raw.githubusercontent.com/HMC-8/HoangMinhChien/96b26069f2132c668d9573e9cae700c9b9509473/yt1s.com%20-%20%20Th%E1%BB%A7%20%C4%90%C3%B4%20%20Dynasty%20Remix%20%20Close%20x%20Run%20Free%20%20List%20Nh%E1%BA%A1c%20TikTok%20Remix%20Ch%C3%A1y%20Nh%C6%B0%20Fai%20Fai%20.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
- 
-    <div class="container">
-        <header>
-            <img src="https://i.imgur.com/9cNkOPE.jpeg" alt="Profile Picture" class="profile-img glow-avatar" id="avatar">
-            <h1 class="name glow" id="name"> 𝐃𝐚𝐧𝐠 𝐇𝐨𝐚𝐧𝐠 𝐀𝐧𝐡 </h1>
-            <p>Xin chào, Tôi là<br>🇻🇳 𝐃𝐇𝐀𝐧𝐡𝐡𝐝𝐳𝐬𝟏𝐭𝐠 🇻🇳</p>
-            <nav>
-                <ul>
-                    <li><a href="https://linkbio.co/dhanhhdzs1tg">Thông tin</a></li>
-                </ul>
-            </nav>
-        </header>
-        <p>Nghe nhạc thì bấm zô đâyy</p>
- 
-        <div class="music-controls">
-            <button id="toggle-music-button">Nhạc . . .</button>
-        </div>
- 
-        <footer>
-            <p>© 2025 Đặng Hoàng Anh. All rights reserved.</p>
-        </footer>
-    </div>
- 
-    <script>
-        const audio = document.getElementById('background-music');
-        const toggleButton = document.getElementById('toggle-music-button');
-        let isPlaying = false;
- 
-        toggleButton.addEventListener('click', function() {
-            if (isPlaying) {
-                audio.pause();
-                toggleButton.textContent = 'Bật nhạc . . .';
-            } else {
-                audio.play();
-                toggleButton.textContent = 'Tắt nhạc . . .';
-            }
-            isPlaying = !isPlaying;
-        });
-    </script>
+
+<img src="https://i.ibb.co/qMwqm7Rm/avatar.jpg" alt="Avatar" class="avatar">
+
+<div class="intro-line">Hi, I am</div>
+
+<div class="name-wrapper">
+  Đặng Hoàng Anh
+  <span class="checkmark"></span>
+</div>
+
+<div class="intro-line">And I'm a <span class="dynamic-text" id="dynamic"></span></div>
+
+<script>
+// Chữ Developer/Gamer luân phiên
+const texts = ["Gamer.", "Developer."];
+let currentText = 0;
+const dynamicEl = document.getElementById("dynamic");
+
+function typeText(text, callback) {
+  dynamicEl.textContent = "";
+  let i = 0;
+  const interval = setInterval(() => {
+    dynamicEl.textContent += text.charAt(i);
+    i++;
+    if(i >= text.length) {
+      clearInterval(interval);
+      if(callback) callback();
+    }
+  }, 100); // tốc độ gõ chữ
+}
+
+function loopTexts() {
+  typeText(texts[currentText], () => {
+    setTimeout(() => {
+      currentText = (currentText + 1) % texts.length;
+      loopTexts();
+    }, 1500);
+  });
+}
+
+loopTexts();
+</script>
+
 </body>
- 
 </html>
