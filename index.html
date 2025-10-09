@@ -60,6 +60,7 @@ body {
   background-size: cover;
 }
 
+/* Dynamic text with moving gradient */
 .dynamic-text {
   font-size:24px;
   font-weight:600;
@@ -68,11 +69,12 @@ body {
   position:relative;
   white-space:nowrap;
   letter-spacing:1px;
-  background: linear-gradient(270deg, #03e6ff, #039aff, #03e6ff);
+  margin-bottom:30px;
+  background: linear-gradient(90deg, #03e6ff, #039aff, #03e6ff, #a0f0ff, #03e6ff);
+  background-size: 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gradientMove 3s linear infinite;
-  margin-bottom:30px;
+  animation: gradientShift 5s linear infinite;
 }
 
 .dynamic-text::after {
@@ -87,7 +89,7 @@ body {
   25%,75% {opacity:0;}
 }
 
-@keyframes gradientMove {
+@keyframes gradientShift {
   0% {background-position:0%;}
   100% {background-position:200%;}
 }
