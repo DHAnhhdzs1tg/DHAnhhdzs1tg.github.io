@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Đặng Hoàng Anh</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -16,7 +16,7 @@ body {
   text-align:center;
   height:100vh;
   width:100vw;
-  background: linear-gradient(135deg, #a0eaff, #ffffff);
+  background: linear-gradient(to bottom, #d3d3d3, #f0f0f0);
   overflow:hidden;
 }
 
@@ -24,25 +24,35 @@ body {
   width:140px;
   height:140px;
   border-radius:50%;
-  border:3px solid currentColor;
   object-fit:cover;
   margin:20px 0;
-  box-shadow:0 0 20px rgba(0,0,0,0.2);
+  box-shadow:0 0 25px rgba(0,0,0,0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+  box-shadow:0 0 35px rgba(0,0,0,0.5);
 }
 
 .intro-line {
-  font-size:24px;
+  font-size:20px;
   margin:5px 0;
+  font-weight:600;
+  letter-spacing:1px;
+  color:#333;
 }
 
 .name-wrapper {
-  font-size:40px;
+  font-size:36px;
   font-weight:700;
-  color:#5DADE2; /* xanh dương nhạt */
+  color:#000000;
   display:flex;
   align-items:center;
   justify-content:center;
   gap:10px;
+  font-family: 'Montserrat', sans-serif;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
 .checkmark {
@@ -54,15 +64,25 @@ body {
 }
 
 .dynamic-text {
-  font-size:28px;
-  font-weight:700;
-  color:#FF69B4; /* hồng nhạt */
+  font-size:24px;
+  font-weight:600; /* đậm vừa phải */
   min-height:36px;
   display:inline-block;
   position:relative;
+  white-space:nowrap;
+  background: linear-gradient(270deg, #03e6ff, #039aff, #03e6ff, #ff03ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing:1px;
+  animation: gradientMove 3s ease infinite;
 }
 
-/* Con trỏ nháy ở chữ Developer/Gamer */
+@keyframes gradientMove {
+  0% { background-position: 0%; }
+  50% { background-position: 100%; }
+  100% { background-position: 0%; }
+}
+
 .dynamic-text::after {
   content: '|';
   position: absolute;
@@ -90,34 +110,45 @@ body {
 <div class="intro-line">And I'm a <span class="dynamic-text" id="dynamic"></span></div>
 
 <script>
-// Chữ Developer/Gamer luân phiên
-const texts = ["Gamer.", "Developer."];
-let currentText = 0;
+const texts = ["Developer.", "Gamer."];
+let currentTextIndex = 0;
 const dynamicEl = document.getElementById("dynamic");
+const typingSpeed = 100;
+const deletingSpeed = 50;
+const pauseDelay = 1500;
 
-function typeText(text, callback) {
-  dynamicEl.textContent = "";
-  let i = 0;
-  const interval = setInterval(() => {
-    dynamicEl.textContent += text.charAt(i);
-    i++;
-    if(i >= text.length) {
-      clearInterval(interval);
-      if(callback) callback();
-    }
-  }, 100); // tốc độ gõ chữ
+function typeWord(word, callback) {
+    let i = 0;
+    const interval = setInterval(() => {
+        dynamicEl.textContent += word[i];
+        i++;
+        if(i === word.length) {
+            clearInterval(interval);
+            setTimeout(callback, pauseDelay);
+        }
+    }, typingSpeed);
 }
 
-function loopTexts() {
-  typeText(texts[currentText], () => {
-    setTimeout(() => {
-      currentText = (currentText + 1) % texts.length;
-      loopTexts();
-    }, 1500);
-  });
+function deleteWord(callback) {
+    const interval = setInterval(() => {
+        dynamicEl.textContent = dynamicEl.textContent.slice(0, -1);
+        if(dynamicEl.textContent.length === 0) {
+            clearInterval(interval);
+            setTimeout(callback, 200);
+        }
+    }, deletingSpeed);
 }
 
-loopTexts();
+function loopTyping() {
+    typeWord(texts[currentTextIndex], () => {
+        deleteWord(() => {
+            currentTextIndex = (currentTextIndex + 1) % texts.length;
+            loopTyping();
+        });
+    });
+}
+
+loopTyping();
 </script>
 
 </body>
