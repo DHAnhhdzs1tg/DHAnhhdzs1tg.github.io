@@ -16,8 +16,9 @@ body {
   text-align:center;
   height:100vh;
   width:100vw;
-  background: linear-gradient(to bottom, #d3d3d3, #f0f0f0);
+  background: linear-gradient(to bottom, #a9a9a9, #f0f0f0); /* xám khói đậm → nhạt */
   overflow:hidden;
+  margin:0;
 }
 
 .avatar {
@@ -44,14 +45,13 @@ body {
 }
 
 .name-wrapper {
-  font-size:36px;
+  font-size:34px;
   font-weight:700;
-  color:#000000;
+  color:#000000; /* màu đen */
   display:flex;
   align-items:center;
   justify-content:center;
   gap:10px;
-  font-family: 'Montserrat', sans-serif;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
@@ -65,22 +65,16 @@ body {
 
 .dynamic-text {
   font-size:24px;
-  font-weight:600; /* đậm vừa phải */
+  font-weight:600;
   min-height:36px;
   display:inline-block;
   position:relative;
   white-space:nowrap;
-  background: linear-gradient(270deg, #03e6ff, #039aff, #03e6ff, #ff03ff);
+  background: linear-gradient(270deg, #03e6ff, #039aff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing:1px;
-  animation: gradientMove 3s ease infinite;
-}
-
-@keyframes gradientMove {
-  0% { background-position: 0%; }
-  50% { background-position: 100%; }
-  100% { background-position: 0%; }
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
 .dynamic-text::after {
@@ -93,6 +87,39 @@ body {
 @keyframes blink {
   0%,50%,100% {opacity:1;}
   25%,75% {opacity:0;}
+}
+
+/* Social links */
+.social-links {
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin-top:20px;
+}
+
+.social-links a {
+  display:inline-flex;
+  width:50px;
+  height:50px;
+  border-radius:10px; /* rìa vuông */
+  overflow:hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border:2px solid rgba(0,0,0,0.1);
+  background-color:#000; /* nền đen */
+  justify-content:center;
+  align-items:center;
+}
+
+.social-links a:hover {
+  transform: scale(1.15);
+  box-shadow:0 0 15px rgba(0,255,255,0.7),
+             0 0 30px rgba(255,0,255,0.5);
+}
+
+.social-links img {
+  width:70%;
+  height:70%;
+  object-fit:contain; /* giữ tỉ lệ */
 }
 </style>
 </head>
@@ -109,43 +136,63 @@ body {
 
 <div class="intro-line">And I'm a <span class="dynamic-text" id="dynamic"></span></div>
 
+<!-- Social Links -->
+<div class="social-links">
+  <a href="https://www.facebook.com/DHAnhhdzs1tg" target="_blank">
+    <img src="https://i.ibb.co/CKqCmtS9/fb.jpg" alt="Facebook">
+  </a>
+  <a href="https://t.me/DHAnhhdzs1tg" target="_blank">
+    <img src="https://i.ibb.co/1fypknWx/tele.jpg" alt="Telegram">
+  </a>
+  <a href="https://www.tiktok.com/@anhdayanhfay" target="_blank">
+    <img src="https://i.ibb.co/KxtBXnPx/tiktok.jpg" alt="TikTok">
+  </a>
+  <a href="https://zalo.me/0888175797" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/vi/thumb/8/84/Zalo_logo.svg/1200px-Zalo_logo.svg.png" alt="Zalo">
+  </a>
+</div>
+
 <script>
 const texts = ["Developer.", "Gamer."];
 let currentTextIndex = 0;
 const dynamicEl = document.getElementById("dynamic");
-const typingSpeed = 100;
-const deletingSpeed = 50;
-const pauseDelay = 1500;
 
 function typeWord(word, callback) {
-    let i = 0;
-    const interval = setInterval(() => {
-        dynamicEl.textContent += word[i];
-        i++;
-        if(i === word.length) {
-            clearInterval(interval);
-            setTimeout(callback, pauseDelay);
-        }
-    }, typingSpeed);
+  dynamicEl.textContent = "";
+  let i = 0;
+  function typeChar() {
+    dynamicEl.textContent += word[i];
+    i++;
+    if(i < word.length) {
+      setTimeout(typeChar, 80 + Math.random()*50);
+    } else {
+      setTimeout(callback, 1200);
+    }
+  }
+  typeChar();
 }
 
 function deleteWord(callback) {
-    const interval = setInterval(() => {
-        dynamicEl.textContent = dynamicEl.textContent.slice(0, -1);
-        if(dynamicEl.textContent.length === 0) {
-            clearInterval(interval);
-            setTimeout(callback, 200);
-        }
-    }, deletingSpeed);
+  let len = dynamicEl.textContent.length;
+  function deleteChar() {
+    dynamicEl.textContent = dynamicEl.textContent.slice(0, -1);
+    len--;
+    if(len > 0) {
+      setTimeout(deleteChar, 50 + Math.random()*30);
+    } else {
+      setTimeout(callback, 200);
+    }
+  }
+  deleteChar();
 }
 
 function loopTyping() {
-    typeWord(texts[currentTextIndex], () => {
-        deleteWord(() => {
-            currentTextIndex = (currentTextIndex + 1) % texts.length;
-            loopTyping();
-        });
+  typeWord(texts[currentTextIndex], () => {
+    deleteWord(() => {
+      currentTextIndex = (currentTextIndex + 1) % texts.length;
+      loopTyping();
     });
+  });
 }
 
 loopTyping();
