@@ -140,4 +140,99 @@ body {
 
 .social-links a:nth-child(1) { animation: iconJump 0.7s ease forwards 0.3s; }
 .social-links a:nth-child(2) { animation: iconJump 0.7s ease forwards 0.6s; }
-.social
+.social-links a:nth-child(3) { animation: iconJump 0.7s ease forwards 0.9s; }
+.social-links a:nth-child(4) { animation: iconJump 0.7s ease forwards 1.2s; }
+
+.social-links a:hover {
+  transform: scale(1.15);
+  box-shadow:0 0 15px rgba(0,255,255,0.7),
+             0 0 30px rgba(255,0,255,0.5);
+}
+
+.social-links img {
+  width:70%;
+  height:70%;
+  object-fit:contain;
+}
+
+footer {
+  margin-top:50px;
+  font-size:14px;
+  color:#555;
+  animation: fadeIn 2s ease forwards;
+}
+</style>
+</head>
+<body>
+
+<img src="https://i.ibb.co/qMwqm7Rm/avatar.jpg" alt="Avatar" class="avatar">
+
+<div class="intro-line">Hi, I am</div>
+
+<div class="name-wrapper">
+  Đặng Hoàng Anh
+  <span class="checkmark"></span>
+</div>
+
+<div class="intro-line">And I'm a <span class="dynamic-text" id="dynamic"></span></div>
+
+<!-- Social Links -->
+<div class="social-links">
+  <a href="https://m.me/100011390754673" target="_blank" rel="noopener noreferrer">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Facebook">
+  </a>
+  <a href="https://t.me/DHAnhhdzs1tg" target="_blank" rel="noopener noreferrer">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+  </a>
+  <a href="https://www.tiktok.com/@anhdayanhfay" target="_blank" rel="noopener noreferrer">
+    <img src="https://i.ibb.co/ynGVNkPV/tiktok.png" alt="TikTok">
+  </a>
+  <a href="https://zalo.me/0888175797" target="_blank" rel="noopener noreferrer">
+    <img src="https://i.ibb.co/wFXR2bV5/zalo.png" alt="Zalo">
+  </a>
+</div>
+
+<footer>© 2025 Đặng Hoàng Anh. All rights reserved.</footer>
+
+<script>
+const texts = ["Developer.", "Gamer."];
+let currentTextIndex = 0;
+const dynamicEl = document.getElementById("dynamic");
+
+function typeWord(word, callback) {
+  dynamicEl.textContent = "";
+  let i = 0;
+  function typeChar() {
+    dynamicEl.textContent += word[i];
+    i++;
+    if(i < word.length) setTimeout(typeChar, 80 + Math.random()*50);
+    else setTimeout(callback, 1200);
+  }
+  typeChar();
+}
+
+function deleteWord(callback) {
+  let len = dynamicEl.textContent.length;
+  function deleteChar() {
+    dynamicEl.textContent = dynamicEl.textContent.slice(0, -1);
+    len--;
+    if(len > 0) setTimeout(deleteChar, 50 + Math.random()*30);
+    else setTimeout(callback, 200);
+  }
+  deleteChar();
+}
+
+function loopTyping() {
+  typeWord(texts[currentTextIndex], () => {
+    deleteWord(() => {
+      currentTextIndex = (currentTextIndex + 1) % texts.length;
+      loopTyping();
+    });
+  });
+}
+
+loopTyping();
+</script>
+
+</body>
+</html>
