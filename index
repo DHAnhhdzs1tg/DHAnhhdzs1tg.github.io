@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+
+<!-- META (CHỈ THÊM) -->
+<meta name="description" content="Trang web cá nhân chính thức của Đặng Hoàng Anh (DHAnhhdzs1tg). Chia sẻ thông tin cá nhân và liên kết mạng xã hội.">
+<meta name="author" content="Đặng Hoàng Anh (DHAnhhdzs1tg)">
+<meta name="robots" content="index, follow">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đặng Hoàng Anh</title>
+
+<!-- FAVICON (CHỈ THÊM) -->
+<link rel="icon" type="image/png" href="avatar.png">
+<link rel="alternate icon" type="image/png" href="dha.png">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+:root {
+  --bg-light: linear-gradient(to bottom, #c2feff, #dbefff);
+  --bg-dark: #0b0f1a;
+  --text-light: #000;
+  --text-dark: #fff;
+  --neon: #00eaff;
+}
+
+body {
+  font-family:'Montserrat',sans-serif;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  min-height:100vh;
+  margin:0;
+  padding:40px 0;
+  background:var(--bg-light);
+  color:var(--text-light);
+  transition:.3s;
+  overflow-x:hidden;
+}
+body.dark {
+  background:var(--bg-dark);
+  color:var(--text-dark);
+}
+
+/* ===== DARK MODE BUTTON (FB STYLE) ===== */
+.toggle {
+  position:fixed;
+  top:20px;
+  right:20px;
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  background:#1877f2;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  cursor:pointer;
+  z-index:10;
+}
+body.dark .toggle {
+  background:#333;
+}
+
+/* ===== AVATAR ===== */
+.avatar {
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  object-fit:cover;
+  margin:30px 0;
+}
+
+/* ===== TEXT ===== */
+.intro-line {
+  font-size:20px;
+  margin:10px 0;
+  font-weight:600;
+}
+
+.name-wrapper {
+  font-size:34px;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:20px;
+}
+
+/* ===== TICK NEON PULSE + GLITCH ===== */
+.checkmark {
+  width:22px;
+  height:22px;
+  background:url('https://cdn-icons-png.flaticon.com/512/5582/5582932.png') center/cover;
+  filter:drop-shadow(0 0 6px var(--neon));
+  animation:pulse 1.5s infinite, glitch .25s infinite alternate;
+}
+
+@keyframes pulse {
+  0% {filter:drop-shadow(0 0 5px var(--neon))}
+  50% {filter:drop-shadow(0 0 14px var(--neon))}
+  100% {filter:drop-shadow(0 0 5px var(--neon))}
+}
+
+@keyframes glitch {
+  from {transform:translate(0)}
+  to {transform:translate(1px,-1px)}
+}
+
+/* ===== DYNAMIC TEXT ===== */
+.dynamic-text {
+  font-size:24px;
+  min-height:36px;
+  background:linear-gradient(270deg,#0da7ff,#73d3ff,#0da7ff);
+  background-size:200%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:gradient 3s infinite;
+}
+@keyframes gradient {
+  0%{background-position:0%}
+  50%{background-position:100%}
+  100%{background-position:0%}
+}
+
+/* ===== SOCIAL ===== */
+.social-links {
+  display:flex;
+  gap:25px;
+  margin-top:30px;
+  flex-wrap:wrap;
+}
+.social-links a {
+  width:60px;
+  height:60px;
+  border-radius:12px;
+  background:#000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+}
+body.dark .social-links a {
+  background:#111;
+}
+.social-links img {
+  width:70%;
+}
+
+/* ===== ELECTRIC CLICK ===== */
+.electric {
+  position:absolute;
+  width:4px;
+  height:4px;
+  background:var(--neon);
+  border-radius:50%;
+  animation:electric .4s linear;
+}
+@keyframes electric {
+  to {transform:scale(25);opacity:0}
+}
+
+/* ===== SNOW EFFECT ===== */
+#snowflakeContainer {
+  position:absolute;
+  left:0;
+  top:0;
+  pointer-events:none;
+}
+.snowflake {
+  padding-left:15px;
+  font-size:14px;
+  line-height:24px;
+  position:fixed;
+  color:#ebebeb;
+  user-select:none;
+  z-index:1000;
+}
+.snowflake:hover {cursor:default}
+
+footer {
+  margin-top:50px;
+  font-size:14px;
+  opacity:.7;
+}
+</style>
+</head>
+
+<body>
+
+<div class="toggle" id="toggle">🌙</div>
+
+<img src="https://i.ibb.co/qMwqm7Rm/avatar.jpg" class="avatar">
+
+<div class="intro-line">Hi, I am</div>
+
+<div class="name-wrapper">
+  Đặng Hoàng Anh <span class="checkmark"></span>
+</div>
+
+<div class="intro-line">
+  And I'm a <span class="dynamic-text" id="dynamic"></span>
+</div>
+
+<div class="social-links">
+  <a href="https://m.me/100011390754673"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"></a>
+  <a href="https://t.me/DHAnhhdzs1tg"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"></a>
+  <a href="https://www.tiktok.com/@anhdayanhfay"><img src="https://i.ibb.co/ynGVNkPV/tiktok.png"></a>
+  <a href="https://zalo.me/0888175797"><img src="https://i.ibb.co/wFXR2bV5/zalo.png"></a>
+</div>
+
+<footer>© 2025 Đặng Hoàng Anh</footer>
+
+<!-- SNOW HTML -->
+<div id="snowflakeContainer">
+  <p class="snowflake">❄</p>
+</div>
+
+<script>
+/* Typing */
+const texts=["Developer.","Gamer."];
+let i=0,el=document.getElementById("dynamic");
+function loop(){
+  let t=texts[i],c=0; el.textContent="";
+  let type=setInterval(()=>{
+    el.textContent+=t[c++];
+    if(c===t.length){clearInterval(type);setTimeout(erase,1200)}
+  },80)
+}
+function erase(){
+  let del=setInterval(()=>{
+    el.textContent=el.textContent.slice(0,-1);
+    if(!el.textContent){clearInterval(del);i=(i+1)%texts.length;loop()}
+  },50)
+}
+loop();
+
+/* Dark mode */
+const toggle=document.getElementById("toggle");
+toggle.onclick=()=>{
+  document.body.classList.toggle("dark");
+  toggle.textContent=document.body.classList.contains("dark")?"☀️":"🌙";
+}
+
+/* Electric click */
+document.querySelectorAll("a,.toggle").forEach(btn=>{
+  btn.addEventListener("click",e=>{
+    const s=document.createElement("span");
+    s.className="electric";
+    s.style.left=e.offsetX+"px";
+    s.style.top=e.offsetY+"px";
+    btn.appendChild(s);
+    setTimeout(()=>s.remove(),400);
+  });
+});
+
+/* ===== SNOW SCRIPT (GIỮ NGUYÊN) ===== */
+var requestAnimationFrame=window.requestAnimationFrame||window.mozRequestAnimationFrame||window.webkitRequestAnimationFrame||window.msRequestAnimationFrame;
+var transforms=["transform","msTransform","webkitTransform","mozTransform","oTransform"];
+var transformProperty=getSupportedPropertyName(transforms);
+var snowflakes=[];
+var browserWidth;
+var browserHeight;
+var numberOfSnowflakes=50;
+var resetPosition=false;
+
+function setup(){
+  window.addEventListener("DOMContentLoaded",generateSnowflakes,false);
+  window.addEventListener("resize",()=>resetPosition=true,false)
+}
+setup();
+
+function getSupportedPropertyName(props){
+  for(var i=0;i<props.length;i++){
+    if(typeof document.body.style[props[i]]!="undefined"){
+      return props[i];
+    }
+  }
+  return null;
+}
+
+function Snowflake(el,radius,speed,x,y){
+  this.element=el;
+  this.radius=radius;
+  this.speed=speed;
+  this.xPos=x;
+  this.yPos=y;
+  this.counter=0;
+  this.sign=Math.random()<0.5?1:-1;
+  this.element.style.opacity=0.5+Math.random();
+  this.element.style.fontSize=4+Math.random()*30+"px";
+}
+
+Snowflake.prototype.update=function(){
+  this.counter+=this.speed/5000;
+  this.xPos+=this.sign*this.speed*Math.cos(this.counter)/40;
+  this.yPos+=Math.sin(this.counter)/40+this.speed/30;
+  setTranslate3DTransform(this.element,Math.round(this.xPos),Math.round(this.yPos));
+  if(this.yPos>browserHeight){this.yPos=-50}
+};
+
+function setTranslate3DTransform(el,x,y){
+  el.style[transformProperty]="translate3d("+x+"px,"+y+"px,0)";
+}
+
+function generateSnowflakes(){
+  var flake=document.querySelector(".snowflake");
+  var container=flake.parentNode;
+  browserWidth=document.documentElement.clientWidth;
+  browserHeight=document.documentElement.clientHeight;
+
+  for(var i=0;i<numberOfSnowflakes;i++){
+    var clone=flake.cloneNode(true);
+    container.appendChild(clone);
+    var x=Math.random()*browserWidth;
+    var y=Math.random()*browserHeight;
+    var speed=5+Math.random()*40;
+    var radius=4+Math.random()*10;
+    snowflakes.push(new Snowflake(clone,radius,speed,x,y));
+  }
+  container.removeChild(flake);
+  moveSnowflakes();
+}
+
+function moveSnowflakes(){
+  snowflakes.forEach(s=>s.update());
+  if(resetPosition){
+    browserWidth=document.documentElement.clientWidth;
+    browserHeight=document.documentElement.clientHeight;
+    snowflakes.forEach(s=>{
+      s.xPos=Math.random()*browserWidth;
+      s.yPos=Math.random()*browserHeight;
+    });
+    resetPosition=false;
+  }
+  requestAnimationFrame(moveSnowflakes);
+}
+</script>
+
+</body>
+</html>
