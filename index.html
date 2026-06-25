@@ -1,346 +1,436 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-
-<!-- META (CHỈ THÊM) -->
-<meta name="description" content="Trang web cá nhân chính thức của Đặng Hoàng Anh (DHAnhhdzs1tg). Chia sẻ thông tin cá nhân và liên kết mạng xã hội.">
-<meta name="author" content="Đặng Hoàng Anh (DHAnhhdzs1tg)">
-<meta name="robots" content="index, follow">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Đặng Hoàng Anh</title>
-
-<!-- FAVICON (CHỈ THÊM) -->
-<link rel="icon" type="image/png" href="avatar.png">
-<link rel="alternate icon" type="image/png" href="dha.png">
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
-
-:root {
-  --bg-light: linear-gradient(to bottom, #c2feff, #dbefff);
-  --bg-dark: #0b0f1a;
-  --text-light: #000;
-  --text-dark: #fff;
-  --neon: #00eaff;
-}
-
-body {
-  font-family:'Montserrat',sans-serif;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-  min-height:100vh;
-  margin:0;
-  padding:40px 0;
-  background:var(--bg-light);
-  color:var(--text-light);
-  transition:.3s;
-  overflow-x:hidden;
-}
-body.dark {
-  background:var(--bg-dark);
-  color:var(--text-dark);
-}
-
-/* ===== DARK MODE BUTTON (FB STYLE) ===== */
-.toggle {
-  position:fixed;
-  top:20px;
-  right:20px;
-  width:46px;
-  height:46px;
-  border-radius:50%;
-  background:#1877f2;
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:20px;
-  cursor:pointer;
-  z-index:10;
-}
-body.dark .toggle {
-  background:#333;
-}
-
-/* ===== AVATAR ===== */
-.avatar {
-  width:140px;
-  height:140px;
-  border-radius:50%;
-  object-fit:cover;
-  margin:30px 0;
-}
-
-/* ===== TEXT ===== */
-.intro-line {
-  font-size:20px;
-  margin:10px 0;
-  font-weight:600;
-}
-
-.name-wrapper {
-  font-size:34px;
-  font-weight:700;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-bottom:20px;
-}
-
-/* ===== TICK NEON PULSE + GLITCH ===== */
-.checkmark {
-  width:22px;
-  height:22px;
-  background:url('https://cdn-icons-png.flaticon.com/512/5582/5582932.png') center/cover;
-  filter:drop-shadow(0 0 6px var(--neon));
-  animation:pulse 1.5s infinite, glitch .25s infinite alternate;
-}
-
-@keyframes pulse {
-  0% {filter:drop-shadow(0 0 5px var(--neon))}
-  50% {filter:drop-shadow(0 0 14px var(--neon))}
-  100% {filter:drop-shadow(0 0 5px var(--neon))}
-}
-
-@keyframes glitch {
-  from {transform:translate(0)}
-  to {transform:translate(1px,-1px)}
-}
-
-/* ===== DYNAMIC TEXT ===== */
-.dynamic-text {
-  font-size:24px;
-  min-height:36px;
-  background:linear-gradient(270deg,#0da7ff,#73d3ff,#0da7ff);
-  background-size:200%;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  animation:gradient 3s infinite;
-}
-@keyframes gradient {
-  0%{background-position:0%}
-  50%{background-position:100%}
-  100%{background-position:0%}
-}
-
-/* ===== SOCIAL ===== */
-.social-links {
-  display:flex;
-  gap:25px;
-  margin-top:30px;
-  flex-wrap:wrap;
-}
-.social-links a {
-  width:60px;
-  height:60px;
-  border-radius:12px;
-  background:#000;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  position:relative;
-  overflow:hidden;
-}
-body.dark .social-links a {
-  background:#111;
-}
-.social-links img {
-  width:70%;
-}
-
-/* ===== ELECTRIC CLICK ===== */
-.electric {
-  position:absolute;
-  width:4px;
-  height:4px;
-  background:var(--neon);
-  border-radius:50%;
-  animation:electric .4s linear;
-}
-@keyframes electric {
-  to {transform:scale(25);opacity:0}
-}
-
-/* ===== SNOW EFFECT ===== */
-#snowflakeContainer {
-  position:absolute;
-  left:0;
-  top:0;
-  pointer-events:none;
-}
-.snowflake {
-  padding-left:15px;
-  font-size:14px;
-  line-height:24px;
-  position:fixed;
-  color:#ebebeb;
-  user-select:none;
-  z-index:1000;
-}
-.snowflake:hover {cursor:default}
-
-footer {
-  margin-top:50px;
-  font-size:14px;
-  opacity:.7;
-}
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Zack AOV</title>
+    <meta name="description" content="Nền tảng cung cấp giải pháp công nghệ ios 5.0 giúp game thủ leo rank an toàn và hiệu quả." />
+    <meta name="keywords" content="Zack AOV, zack aov, zackaov, Zack Mod, zack mod, zackmod" />
+    <meta name="author" content="Zack AOV" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://zackaov.com/" />
+    <link rel="icon" href="https://zackaov.com/uploads/intro/1779540353_a5ef5ada02eacfb4.png" type="image/png" />
+    <link rel="shortcut icon" href="https://zackaov.com/uploads/intro/1779540353_a5ef5ada02eacfb4.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="https://zackaov.com/uploads/intro/1779540353_a5ef5ada02eacfb4.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="zackaov" />
+    <meta property="og:url" content="https://zackaov.com/" />
+    <meta property="og:title" content="Zack AOV" />
+    <meta property="og:description" content="Nền tảng cung cấp giải pháp công nghệ ios 5.0 giúp game thủ leo rank an toàn và hiệu quả." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Zack AOV" />
+    <meta name="twitter:description" content="Nền tảng cung cấp giải pháp công nghệ ios 5.0 giúp game thủ leo rank an toàn và hiệu quả." />
+    <link rel="preload" as="image" href="https://zackaov.com/uploads/intro/1780955356_1dd3ee4217b20cca.png" fetchpriority="high" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700;800&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="https://zackaov.com/assets/css/style.2.0.css?v=1781711204" />
 </head>
-
 <body>
+    <main role="main">
+        <!-- NAV -->
+        <nav class="zackaov-nav" aria-label="Điều hướng chính">
+            <button class="zackaov-bell-btn" id="zackaov-bell-btn" aria-label="Thông báo">
+                <i class="fas fa-bell"></i>
+                                <span class="zackaov-bell-badge"></span>
+                            </button>
+            <button class="zackaov-theme-btn" id="zackaov-theme-toggle" onclick="vtToggleTheme()" aria-label="Chuyển chế độ tối/sáng">
+                <i class="bi bi-sun-fill zackaov-theme-icon" id="zackaov-theme-icon"></i>
+            </button>
+        </nav>
 
-<div class="toggle" id="toggle">🌙</div>
+        <!-- NOTIFICATION POPUP -->
+        <div id="zackaov-notif-overlay" class="zackaov-notif-overlay" onclick="vtCloseNotif(event)"></div>
+        <div id="zackaov-notif-panel" class="zackaov-notif-panel">
+            <div class="zackaov-notif-header">
+                <span><i class="fas fa-bell"></i> Thông Báo</span>
+                <button onclick="vtCloseNotif()" class="zackaov-notif-close"><i class="fas fa-xmark"></i></button>
+            </div>
+            <div class="zackaov-notif-body">
+                                                <div class="zackaov-notif-item">
+                                                            <div class="zackaov-notif-content">Nếu mọi người Vượt Link mà thấy Web không có nút Get Link mà chỉ có nút Mua Link hoặc Web Vượt Link bị lỗi 404 thì hôm đó hết mã rồi nhé và phải đợi sang 0h ngày mới thì mới Vượt Link lấy Key tiếp được. Mọi người lưu ý nên lấy Key trước 18h để tránh hết mã không lấy được Key hoặc có thể lên Web <a href="https://zackmod.com" target="_blank" rel="noopener noreferrer">zackmod.com</a> để Mua Key không cần Vượt Link nhé.</div>
+                                        <div class="zackaov-notif-time">01:38 07/06/2026</div>
+                </div>
+                                            </div>
+        </div>
 
-<img src="https://i.ibb.co/qMwqm7Rm/avatar.jpg" class="avatar">
+        <!-- AVATAR -->
+        <div class="zackaov-avatar-wrap">
+            <img class="zackaov-avatar" src="/uploads/intro/1780955356_1dd3ee4217b20cca.png" alt="Ảnh đại diện Zack AOV" fetchpriority="high" width="120" height="120">
+                    </div>
 
-<div class="intro-line">Hi, I am</div>
+        <!-- NAME & HEADLINE -->
+        <p class="zackaov-iam">Hi, i am</p>
+        <h1 class="zackaov-name">
+            Zack AOV            <img class="zackaov-verify" src="assets/img/verify.png" alt="verified" width="27" height="27">
+        </h1>
+        <p class="zackaov-headline">and I'm a <span id="typed-text" class="zackaov-gradient-text"></span></p>
 
-<div class="name-wrapper">
-  Đặng Hoàng Anh <span class="checkmark"></span>
-</div>
+        <!-- SOCIALS -->
+        <div class="zackaov-socials">
+                            <a href="https://t.me/zackaov" class="zackaov-social-item" target="_blank" rel="noopener noreferrer" aria-label="Mạng xã hội">
+                    <img src="/uploads/social/1780246170_467c5976f5747a2c.png" alt="Social" width="40" height="40">
+                </a>
+                            <a href="https://youtube.com/@zackaov" class="zackaov-social-item" target="_blank" rel="noopener noreferrer" aria-label="Mạng xã hội">
+                    <img src="/uploads/social/1780246162_133945f2ee927bab.png" alt="Social" width="40" height="40">
+                </a>
+                            <a href="https://discord.gg/wMpyt2MS6R" class="zackaov-social-item" target="_blank" rel="noopener noreferrer" aria-label="Mạng xã hội">
+                    <img src="/uploads/social/1780246067_6b540a67208ce38b.png" alt="Social" width="40" height="40">
+                </a>
+                    </div>
 
-<div class="intro-line">
-  And I'm a <span class="dynamic-text" id="dynamic"></span>
-</div>
+        <!-- LINK BOXES -->
+        <div class="zackaov-linkbox-section">
+                        <div>
+                <div class="zackaov-linkbox">
+                                        <div class="zackaov-linkbox-item">
+                        <p class="zackaov-linkbox-title">Website Mua Key Không Cần Vượt</p>
+                        <a href="https://zackmod.com/" class="zackaov-link-btn zackaov-link-type"
+                           target="_blank" rel="noopener"                           aria-label="Website Mua Key Không Cần Vượt">
+                            <span class="svg-icon" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                                        <div class="zackaov-linkbox-item">
+                        <p class="zackaov-linkbox-title">Acc Liên Quân Miễn Phí</p>
+                        <a href="https://zackaov.com/random" class="zackaov-link-btn zackaov-link-type"
+                           target="_blank" rel="noopener"                           aria-label="Acc Liên Quân Miễn Phí">
+                            <span class="svg-icon" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                                        <div class="zackaov-linkbox-item">
+                        <p class="zackaov-linkbox-title">Telegram Group</p>
+                        <a href="https://t.me/zackaov" class="zackaov-link-btn zackaov-link-type"
+                           target="_blank" rel="noopener"                           aria-label="Telegram Group">
+                            <span class="svg-icon" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                                    </div>
+            </div>
+                        <div>
+                <div class="zackaov-linkbox">
+                                        <div class="zackaov-linkbox-item">
+                        <p class="zackaov-linkbox-title">Website Mua Chứng Chỉ Cá Nhân</p>
+                        <a href="https://app.zackaov.com/" class="zackaov-link-btn zackaov-link-type"
+                           target="_blank" rel="noopener"                           aria-label="Website Mua Chứng Chỉ Cá Nhân">
+                            <span class="svg-icon" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                                        <div class="zackaov-linkbox-item">
+                        <p class="zackaov-linkbox-title">Profile Dns Anti Revoke</p>
+                        <a href="https://storeipa.com/file/zackaov.mobileconfig" class="zackaov-link-btn "
+                                                      aria-label="Profile Dns Anti Revoke">
+                            <span class="svg-icon" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                                        <div class="zackaov-linkbox-item">
+                        <p class="zackaov-linkbox-title">Discord Group</p>
+                        <a href="https://discord.gg/wMpyt2MS6R" class="zackaov-link-btn zackaov-link-type"
+                           target="_blank" rel="noopener"                           aria-label="Discord Group">
+                            <span class="svg-icon" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                                    </div>
+            </div>
+                    </div>
 
-<div class="social-links">
-  <a href="https://m.me/100011390754673"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"></a>
-  <a href="https://t.me/DHAnhhdzs1tg"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"></a>
-  <a href="https://www.tiktok.com/@anhdayanhfay"><img src="https://i.ibb.co/ynGVNkPV/tiktok.png"></a>
-  <a href="https://zalo.me/0888175797"><img src="https://i.ibb.co/wFXR2bV5/zalo.png"></a>
-</div>
+        <!-- CATEGORY TABS -->
+        
+        <!-- APP GROUPS -->
+        <section class="zackaov-app-section" aria-label="Danh sách ứng dụng">
+                            <div class="zackaov-group-block" id="group-1">
+                <h2 class="zackaov-section-title">
+                    ZACK MAP V1                                    </h2>
+                                <div class="zackaov-app-list">
+                                                                    <div class="zackaov-app-entry">
+                        <div class="zackaov-app-item">
+                            <div class="zackaov-app-info">
+                                <div class="zackaov-app-icon-wrap">
+                                    <img src="/uploads/apps/1780508211_dee116efc3fd14f5.jpeg" alt="MENU HACK MAP V1" width="58" height="58" loading="lazy">
+                                </div>
+                                <div>
+                                    <span class="zackaov-app-name">
+                                        MENU HACK MAP V1                                    </span>
+                                                                            <span class="zackaov-app-desc">
+                                            Cập Nhật Ngày 22/6                                        </span>
+                                                                        <span class="zackaov-meta-row">
+                                                                                    <span class="zackaov-platform-badge zackaov-platform-ios"><i class="fab fa-apple"></i> iOS</span>
+                                                                                                                                                            </span>
+                                </div>
+                            </div>
+                            <button class="zackaov-download-btn " aria-label="Tải xuống MENU HACK MAP V1" onclick="window.open('https://mokhoasub.com/Ms9NS','_blank')">
+                                <span class="svg-icon"></span>
+                            </button>
+                        </div>
+                        </div>
+                                                                    <div class="zackaov-app-entry">
+                        <div class="zackaov-app-item">
+                            <div class="zackaov-app-info">
+                                <div class="zackaov-app-icon-wrap">
+                                    <img src="/uploads/apps/1780960100_b704e28876d46a61.png" alt="KEY HACK MAP V1" width="58" height="58" loading="lazy">
+                                </div>
+                                <div>
+                                    <span class="zackaov-app-name">
+                                        KEY HACK MAP V1                                    </span>
+                                                                            <span class="zackaov-auto-time"></span>
+                                                                        <span class="zackaov-meta-row">
+                                                                                    <span class="zackaov-platform-badge zackaov-platform-ios"><i class="fab fa-apple"></i> iOS</span>
+                                                                                                                                                            </span>
+                                </div>
+                            </div>
+                            <button class="zackaov-download-btn zackaov-link-type" aria-label="Trụy cập KEY HACK MAP V1" onclick="window.open('https://my.zackaov.com/zack-map','_blank')">
+                                <span class="svg-icon"></span>
+                            </button>
+                        </div>
+                        </div>
+                                    </div>
+                </div>
+                            <div class="zackaov-group-block" id="group-3">
+                <h2 class="zackaov-section-title">
+                    ZACK MOD V2                                    </h2>
+                                <div class="zackaov-app-list">
+                                                                    <div class="zackaov-app-entry">
+                        <div class="zackaov-app-item">
+                            <div class="zackaov-app-info">
+                                <div class="zackaov-app-icon-wrap">
+                                    <img src="/uploads/apps/1780509531_291e2608ee88cac7.jpeg" alt="MENU MOD SKIN V2" width="58" height="58" loading="lazy">
+                                </div>
+                                <div>
+                                    <span class="zackaov-app-name">
+                                        MENU MOD SKIN V2                                    </span>
+                                                                            <span class="zackaov-app-desc">
+                                            Cập Nhật Ngày 22/6                                        </span>
+                                                                        <span class="zackaov-meta-row">
+                                                                                    <span class="zackaov-platform-badge zackaov-platform-ios"><i class="fab fa-apple"></i> iOS</span>
+                                                                                                                                                            </span>
+                                </div>
+                            </div>
+                            <button class="zackaov-download-btn " aria-label="Tải xuống MENU MOD SKIN V2" onclick="window.open('https://mokhoasub.com/OuOYcC7','_blank')">
+                                <span class="svg-icon"></span>
+                            </button>
+                        </div>
+                        </div>
+                                                                    <div class="zackaov-app-entry">
+                        <div class="zackaov-app-item">
+                            <div class="zackaov-app-info">
+                                <div class="zackaov-app-icon-wrap">
+                                    <img src="/uploads/apps/1780510740_6e4c3349adc5cba0.png" alt="KEY MOD SKIN V2" width="58" height="58" loading="lazy">
+                                </div>
+                                <div>
+                                    <span class="zackaov-app-name">
+                                        KEY MOD SKIN V2                                    </span>
+                                                                            <span class="zackaov-auto-time"></span>
+                                                                        <span class="zackaov-meta-row">
+                                                                                    <span class="zackaov-platform-badge zackaov-platform-ios"><i class="fab fa-apple"></i> iOS</span>
+                                                                                                                                                            </span>
+                                </div>
+                            </div>
+                            <button class="zackaov-download-btn zackaov-link-type" aria-label="Trụy cập KEY MOD SKIN V2" onclick="window.open('https://my.zackaov.com/zack-mod','_blank')">
+                                <span class="svg-icon"></span>
+                            </button>
+                        </div>
+                        </div>
+                                    </div>
+                </div>
+                            <div class="zackaov-group-block" id="group-2">
+                <h2 class="zackaov-section-title">
+                    FILE MOD SKIN                                    </h2>
+                                <div class="zackaov-app-list">
+                                                                    <div class="zackaov-app-entry">
+                        <div class="zackaov-app-item">
+                            <div class="zackaov-app-info">
+                                <div class="zackaov-app-icon-wrap">
+                                    <img src="/uploads/apps/1780959736_20c6bd69e3a1e4b4.png" alt="FILE 55 SKIN LQ V3" width="58" height="58" loading="lazy">
+                                </div>
+                                <div>
+                                    <span class="zackaov-app-name">
+                                        FILE 55 SKIN LQ V3                                    </span>
+                                                                            <span class="zackaov-app-desc">
+                                            Cập Nhật Ngày 10/6                                        </span>
+                                                                        <span class="zackaov-meta-row">
+                                                                                    <span class="zackaov-platform-badge zackaov-platform-ios"><i class="fab fa-apple"></i> iOS</span>
+                                                                                                                                                            </span>
+                                </div>
+                            </div>
+                            <button class="zackaov-download-btn " aria-label="Tải xuống FILE 55 SKIN LQ V3" onclick="window.open('https://my.zackaov.com/eVcw','_blank')">
+                                <span class="svg-icon"></span>
+                            </button>
+                        </div>
+                        </div>
+                                                                    <div class="zackaov-app-entry">
+                        <div class="zackaov-app-item">
+                            <div class="zackaov-app-info">
+                                <div class="zackaov-app-icon-wrap">
+                                    <img src="/uploads/apps/1781343034_1134145dfc9c26d3.png" alt="FILE 100 SKIN LQ V4" width="58" height="58" loading="lazy">
+                                </div>
+                                <div>
+                                    <span class="zackaov-app-name">
+                                        FILE 100 SKIN LQ V4                                    </span>
+                                                                            <span class="zackaov-app-desc">
+                                            Cập Nhật Ngày 13/6                                        </span>
+                                                                        <span class="zackaov-meta-row">
+                                                                                    <span class="zackaov-platform-badge zackaov-platform-ios"><i class="fab fa-apple"></i> iOS</span>
+                                                                                                                                                            </span>
+                                </div>
+                            </div>
+                            <button class="zackaov-download-btn " aria-label="Tải xuống FILE 100 SKIN LQ V4" onclick="window.open('https://my.zackaov.com/mPQm051','_blank')">
+                                <span class="svg-icon"></span>
+                            </button>
+                        </div>
+                        </div>
+                                    </div>
+                </div>
+                    </section>
 
-<footer>© 2025 Đặng Hoàng Anh</footer>
+        <!-- PREVIEW LIGHTBOX -->
+        <div id="zackaov-preview-modal" class="zackaov-preview-modal" onclick="vtClosePreview(event)">
+            <button type="button" class="zackaov-preview-close" onclick="vtClosePreview()" aria-label="Đóng"><i class="fas fa-xmark"></i></button>
+            <div id="zackaov-preview-title" class="zackaov-preview-title"></div>
+            <div class="zackaov-preview-stage">
+                <img id="zackaov-preview-img" src="" alt="Preview" draggable="false">
+            </div>
+            <div class="zackaov-preview-nav">
+                <button type="button" class="zackaov-preview-arrow" onclick="vtPreviewPrev()" aria-label="Ảnh trước"><i class="fas fa-arrow-left"></i></button>
+                <div id="zackaov-preview-dots" class="zackaov-preview-dots"></div>
+                <button type="button" class="zackaov-preview-arrow" onclick="vtPreviewNext()" aria-label="Ảnh sau"><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
 
-<!-- SNOW HTML -->
-<div id="snowflakeContainer">
-  <p class="snowflake">❄</p>
-</div>
+        <!-- SNOW -->
+        <!--<div id="snows" aria-hidden="true"></div>-->
+        
+        <!-- MUSIC PLAYER -->
+        <div class="zackaov-skill">
+            <div class="zackaov-music-player">
+                <div class="zackaov-disc-outer">
+                    <iframe id="sc-widget" scrolling="no" frameborder="no" allow="autoplay"
+                        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/th-ng-v-n-866031815/sets/zackaov&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"
+                        style="position:absolute;inset:0;width:100%;height:100%;opacity:0;border-radius:50%;pointer-events:none;" title="SoundCloud Player"></iframe>
+                    <div class="zackaov-disc-wrap">
+                        <div class="zackaov-disc" id="zackaov-disc">
+                            <div class="zackaov-disc-loading" id="zackaov-disc-loading">
+                                <i class="fas fa-headphones"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="zackaov-track-info">
+                    <div class="zackaov-track-title" id="zackaov-track-title">Đang tải...</div>
+                    <div class="zackaov-track-artist" id="zackaov-track-artist">SoundCloud</div>
+                </div>
+                <div class="zackaov-progress-wrap">
+                    <span class="zackaov-time" id="zackaov-time-cur">00:00</span>
+                    <div class="zackaov-progress-track" id="zackaov-progress-track">
+                        <div class="zackaov-progress-fill" id="zackaov-progress-fill"></div>
+                    </div>
+                    <span class="zackaov-time" id="zackaov-time-total">00:00</span>
+                </div>
+                <div class="zackaov-controls">
+                    <button class="zackaov-ctrl-btn" onclick="vtMusicPrev()" aria-label="Bài trước"><i class="fas fa-backward"></i></button>
+                    <button class="zackaov-play-btn" id="zackaov-play-btn" onclick="vtMusicToggle()" aria-label="Phát/Dừng">
+                        <i class="fas fa-play" id="zackaov-play-icon"></i>
+                    </button>
+                    <button class="zackaov-ctrl-btn" onclick="vtMusicNext()" aria-label="Bài tiếp"><i class="fas fa-forward"></i></button>
+                </div>
+            </div>
+        </div>
 
+        <!-- FOOTER -->
+        <footer class="zackaov-footer">
+            &copy; Designer by Zack AOV 2026        </footer>
+    </main>
 <script>
-/* Typing */
-const texts=["Developer.","Gamer."];
-let i=0,el=document.getElementById("dynamic");
-function loop(){
-  let t=texts[i],c=0; el.textContent="";
-  let type=setInterval(()=>{
-    el.textContent+=t[c++];
-    if(c===t.length){clearInterval(type);setTimeout(erase,1200)}
-  },80)
-}
-function erase(){
-  let del=setInterval(()=>{
-    el.textContent=el.textContent.slice(0,-1);
-    if(!el.textContent){clearInterval(del);i=(i+1)%texts.length;loop()}
-  },50)
-}
-loop();
+(function() {
+    // 1. Chỉ cho phép trang web hoạt động trên tên miền GitHub của bạn và môi trường thử nghiệm máy tính
+    var allowedDomains = ["dhanhhdzs1tg.github.io", "localhost", "127.0.0.1"];
+    var currentHostname = window.location.hostname.toLowerCase();
 
-/* Dark mode */
-const toggle=document.getElementById("toggle");
-toggle.onclick=()=>{
-  document.body.classList.toggle("dark");
-  toggle.textContent=document.body.classList.contains("dark")?"☀️":"🌙";
-}
+    // 2. Nếu tên miền hiện tại KHÔNG nằm trong danh sách được phép, kích hoạt chế độ chặn
+    if (allowedDomains.indexOf(currentHostname) === -1) {
+        // Khóa cuộn trang web giả mạo
+        document.documentElement.style.overflow = 'hidden';
+        
+        // 3. Tạo giao diện thông báo khóa nội dung
+        var overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.inset = '0';
+        overlay.style.backgroundColor = '#f4f7fe';
+        overlay.style.zIndex = '999999';
+        overlay.style.display = 'flex';
+        overlay.style.justifyContent = 'center';
+        overlay.style.alignItems = 'center';
+        overlay.style.fontFamily = '"Quicksand", sans-serif';
+        overlay.style.padding = '20px';
 
-/* Electric click */
-document.querySelectorAll("a,.toggle").forEach(btn=>{
-  btn.addEventListener("click",e=>{
-    const s=document.createElement("span");
-    s.className="electric";
-    s.style.left=e.offsetX+"px";
-    s.style.top=e.offsetY+"px";
-    btn.appendChild(s);
-    setTimeout(()=>s.remove(),400);
-  });
-});
+        var card = document.createElement('div');
+        card.style.backgroundColor = '#ffffff';
+        card.style.borderRadius = '32px';
+        card.style.boxShadow = '0 20px 40px rgba(0,0,0,0.05)';
+        card.style.padding = '40px';
+        card.style.width = '100%';
+        card.style.maxWidth = '450px';
+        card.style.textAlign = 'center';
 
-/* ===== SNOW SCRIPT (GIỮ NGUYÊN) ===== */
-var requestAnimationFrame=window.requestAnimationFrame||window.mozRequestAnimationFrame||window.webkitRequestAnimationFrame||window.msRequestAnimationFrame;
-var transforms=["transform","msTransform","webkitTransform","mozTransform","oTransform"];
-var transformProperty=getSupportedPropertyName(transforms);
-var snowflakes=[];
-var browserWidth;
-var browserHeight;
-var numberOfSnowflakes=50;
-var resetPosition=false;
+        // Tạo icon ổ khóa màu xanh bảo mật
+        var iconWrap = document.createElement('div');
+        iconWrap.style.width = '70px';
+        iconWrap.style.height = '70px';
+        iconWrap.style.borderRadius = '50%';
+        iconWrap.style.backgroundColor = '#f0f3ff';
+        iconWrap.style.display = 'flex';
+        iconWrap.style.justifyContent = 'center';
+        iconWrap.style.alignItems = 'center';
+        iconWrap.style.margin = '0 auto 24px';
+        iconWrap.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#3b5998" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>';
 
-function setup(){
-  window.addEventListener("DOMContentLoaded",generateSnowflakes,false);
-  window.addEventListener("resize",()=>resetPosition=true,false)
-}
-setup();
+        // Tiêu đề thông báo
+        var title = document.createElement('h2');
+        title.innerText = 'Nội dung được bảo vệ';
+        title.style.fontSize = '24px';
+        title.style.fontWeight = '700';
+        title.style.color = '#111827';
+        title.style.margin = '0 0 16px 0';
 
-function getSupportedPropertyName(props){
-  for(var i=0;i<props.length;i++){
-    if(typeof document.body.style[props[i]]!="undefined"){
-      return props[i];
+        // Nội dung chi tiết - Trỏ link và thông tin trực tiếp về GitHub của bạn
+        var desc = document.createElement('p');
+        desc.style.fontSize = '15px';
+        desc.style.color = '#6b7280';
+        desc.style.lineHeight = '1.6';
+        desc.style.margin = '0 0 24px 0';
+        desc.innerHTML = 'Trang bạn đang xem là <span style="color:#4f46e5;font-weight:600;">bản sao chép</span>. Toàn bộ nội dung thuộc bản quyền của hệ thống — vui lòng quay lại trang chính thức.';
+
+        // Đếm ngược thời gian
+        var countdown = document.createElement('p');
+        countdown.style.fontSize = '14px';
+        countdown.style.color = '#9ca3af';
+        countdown.style.margin = '0';
+        
+        var secondsLeft = 3;
+        countdown.innerHTML = 'Tự động chuyển hướng sau <span id="katoriaov-countdown-num" style="color:#4f46e5;font-weight:600;">' + secondsLeft + '</span> giây...';
+
+        // Gắn các phần tử vào giao diện
+        card.appendChild(iconWrap);
+        card.appendChild(title);
+        card.appendChild(desc);
+        card.appendChild(countdown);
+        overlay.appendChild(card);
+        document.body.appendChild(overlay);
+
+        // 4. Đếm ngược 3 giây và tự động chuyển hướng người dùng TRỞ LẠI trang GitHub của bạn
+        var timer = setInterval(function() {
+            secondsLeft--;
+            var numSpan = document.getElementById('katoriaov-countdown-num');
+            if (numSpan) numSpan.innerText = secondsLeft;
+            
+            if (secondsLeft <= 0) {
+                clearInterval(timer);
+                window.location.href = 'https://DHAnhhdzs1tg.github.io';
+            }
+        }, 1000);
     }
-  }
-  return null;
-}
-
-function Snowflake(el,radius,speed,x,y){
-  this.element=el;
-  this.radius=radius;
-  this.speed=speed;
-  this.xPos=x;
-  this.yPos=y;
-  this.counter=0;
-  this.sign=Math.random()<0.5?1:-1;
-  this.element.style.opacity=0.5+Math.random();
-  this.element.style.fontSize=4+Math.random()*30+"px";
-}
-
-Snowflake.prototype.update=function(){
-  this.counter+=this.speed/5000;
-  this.xPos+=this.sign*this.speed*Math.cos(this.counter)/40;
-  this.yPos+=Math.sin(this.counter)/40+this.speed/30;
-  setTranslate3DTransform(this.element,Math.round(this.xPos),Math.round(this.yPos));
-  if(this.yPos>browserHeight){this.yPos=-50}
-};
-
-function setTranslate3DTransform(el,x,y){
-  el.style[transformProperty]="translate3d("+x+"px,"+y+"px,0)";
-}
-
-function generateSnowflakes(){
-  var flake=document.querySelector(".snowflake");
-  var container=flake.parentNode;
-  browserWidth=document.documentElement.clientWidth;
-  browserHeight=document.documentElement.clientHeight;
-
-  for(var i=0;i<numberOfSnowflakes;i++){
-    var clone=flake.cloneNode(true);
-    container.appendChild(clone);
-    var x=Math.random()*browserWidth;
-    var y=Math.random()*browserHeight;
-    var speed=5+Math.random()*40;
-    var radius=4+Math.random()*10;
-    snowflakes.push(new Snowflake(clone,radius,speed,x,y));
-  }
-  container.removeChild(flake);
-  moveSnowflakes();
-}
-
-function moveSnowflakes(){
-  snowflakes.forEach(s=>s.update());
-  if(resetPosition){
-    browserWidth=document.documentElement.clientWidth;
-    browserHeight=document.documentElement.clientHeight;
-    snowflakes.forEach(s=>{
-      s.xPos=Math.random()*browserWidth;
-      s.yPos=Math.random()*browserHeight;
-    });
-    resetPosition=false;
-  }
-  requestAnimationFrame(moveSnowflakes);
-}
+})();
 </script>
-
+    
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"c9b1766f5ec343179a8e8eb1ffe83136","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
