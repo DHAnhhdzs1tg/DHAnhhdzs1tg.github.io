@@ -34,7 +34,6 @@
     <link rel="stylesheet" href="https://dhanhh.com/assets/css/style.2.0.css?v=1781711204" />
 
     <style>
-        /* Tích hợp CSS cơ bản điều khiển Dark Mode nếu file style.2.0.css chưa định nghĩa */
         :root {
             --bg-color: #f4f7fe;
             --text-color: #1c1f27;
@@ -46,9 +45,21 @@
             --card-bg: #151a26;
         }
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg-color) !important;
+            color: var(--text-color) !important;
             transition: background 0.3s, color 0.3s;
+        }
+        /* Đồng bộ màu chữ cho linkbox và app entry ở chế độ tối nếu file gốc bị đè màu */
+        [data-theme="dark"] .dhanhh-linkbox-title,
+        [data-theme="dark"] .dhanhh-app-name,
+        [data-theme="dark"] .dhanhh-section-title,
+        [data-theme="dark"] .dhanhh-track-title {
+            color: #ffffff !important;
+        }
+        [data-theme="dark"] .dhanhh-linkbox-item,
+        [data-theme="dark"] .dhanhh-app-item,
+        [data-theme="dark"] .dhanhh-music-player {
+            background-color: var(--card-bg) !important;
         }
         .dhanhh-disc.playing {
             animation: rotateDisc 5s linear infinite;
@@ -271,9 +282,9 @@
         <div class="dhanhh-skill">
             <div class="dhanhh-music-player">
                 <div class="dhanhh-disc-outer">
-                    <!-- Khởi tạo bộ nạp SoundCloud ID -->
+                    <!-- Đã cập nhật URL bài hát mới từ SoundCloud -->
                     <iframe id="sc-widget" scrolling="no" frameborder="no" allow="autoplay"
-                        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/th-ng-v-n-866031815/sets/zackaov&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"
+                        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1990425302&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"
                         style="position:absolute;inset:0;width:100%;height:100%;opacity:0;border-radius:50%;pointer-events:none;" title="SoundCloud Player"></iframe>
                     <div class="dhanhh-disc-wrap">
                         <div class="dhanhh-disc" id="dhanhh-disc">
@@ -323,7 +334,7 @@
         loop: true
     });
 
-    // 2. LOGIC ĐIỀU KHIỂN DARK / LIGHT THEME
+    // 2. LOGIC ĐIỀU KHIỂN DARK / LIGHT THEME (ĐÃ FIX ĐỒNG BỘ ICON)
     function vtToggleTheme() {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -332,20 +343,25 @@
         localStorage.setItem('theme', targetTheme);
         
         const icon = document.getElementById('dhanhh-theme-icon');
-        if (targetTheme === 'dark') {
-            icon.className = 'bi bi-moon-stars-fill dhanhh-theme-icon';
-        } else {
-            icon.className = 'bi bi-sun-fill dhanhh-theme-icon';
+        if (icon) {
+            if (targetTheme === 'dark') {
+                icon.className = 'bi bi-moon-stars-fill dhanhh-theme-icon';
+            } else {
+                icon.className = 'bi bi-sun-fill dhanhh-theme-icon';
+            }
         }
     }
+
     // Khởi tạo trạng thái ban đầu của Theme từ máy người dùng
     (function() {
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
-        setTimeout(() => {
+        window.addEventListener('DOMContentLoaded', () => {
             const icon = document.getElementById('dhanhh-theme-icon');
-            if(icon) icon.className = savedTheme === 'dark' ? 'bi bi-moon-stars-fill dhanhh-theme-icon' : 'bi bi-sun-fill dhanhh-theme-icon';
-        }, 100);
+            if(icon) {
+                icon.className = savedTheme === 'dark' ? 'bi bi-moon-stars-fill dhanhh-theme-icon' : 'bi bi-sun-fill dhanhh-theme-icon';
+            }
+        });
     })();
 
     // 3. ĐIỀU KHIỂN ĐÓNG/MỞ POPUP THÔNG BÁO
@@ -379,7 +395,6 @@
     }
 
     widget.bind(SC.Widget.Events.READY, function() {
-        // Cập nhật thông tin bài hát khi nạp xong danh sách
         widget.getCurrentSound(function(sound) {
             if(sound) {
                 trackTitle.innerText = sound.title;
@@ -391,26 +406,25 @@
 
     widget.bind(SC.Widget.Events.PLAY, function() {
         isPlaying = true;
-        playIcon.className = "fas fa-pause";
-        disc.classList.add('playing');
-        document.getElementById('dhanhh-disc-loading').style.display = 'none';
+        if(playIcon) playIcon.className = "fas fa-pause";
+        if(disc) disc.classList.add('playing');
+        const loadingIcon = document.getElementById('dhanhh-disc-loading');
+        if(loadingIcon) loadingIcon.style.display = 'none';
     });
 
     widget.bind(SC.Widget.Events.PAUSE, function() {
         isPlaying = false;
-        playIcon.className = "fas fa-play";
-        disc.classList.remove('playing');
+        if(playIcon) playIcon.className = "fas fa-play";
+        if(disc) disc.classList.remove('playing');
     });
 
-    // Theo dõi tiến trình nhạc chạy để cập nhật thanh tiến trình (Progress Bar)
     widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(progress) {
         let relativePosition = progress.relativePosition * 100;
-        progressFill.style.width = relativePosition + '%';
-        timeCur.innerText = formatTime(progress.currentPosition);
+        if(progressFill) progressFill.style.width = relativePosition + '%';
+        if(timeCur) timeCur.innerText = formatTime(progress.currentPosition);
         
-        // Cập nhật lại tổng thời gian nếu đổi bài mới bất ngờ
         widget.getCurrentSound(function(sound) {
-            if(sound) timeTotal.innerText = formatTime(sound.duration);
+            if(sound && timeTotal) timeTotal.innerText = formatTime(sound.duration);
         });
     });
 
@@ -438,7 +452,6 @@
         });
     }
 
-    // Hỗ trợ click vào thanh progress để tua nhạc
     document.getElementById('dhanhh-progress-track').addEventListener('click', function(e) {
         let rect = this.getBoundingClientRect();
         let clickPosition = (e.clientX - rect.left) / rect.width;
@@ -449,115 +462,105 @@
         });
     });
 
-(function() {
-    // 1. Kiểm tra môi trường hoạt động hợp lệ
-    var allowedDomains = ["dhanhhdzs1tg.github.io", "localhost", "127.0.0.1"];
-    var currentHostname = window.location.hostname.toLowerCase();
+    // 5. ANTI-CLONE SYSTEM
+    (function() {
+        var allowedDomains = ["dhanhhdzs1tg.github.io", "localhost", "127.0.0.1", "dhanhh.com"];
+        var currentHostname = window.location.hostname.toLowerCase();
 
-    if (allowedDomains.indexOf(currentHostname) === -1) {
-        // Chặn hoàn toàn hành động cuộn màn hình
-        document.documentElement.style.setProperty('overflow', 'hidden', 'important');
-        if (document.body) {
-            document.body.style.setProperty('overflow', 'hidden', 'important');
-            document.body.style.setProperty('margin', '0', 'important');
-            document.body.style.setProperty('padding', '0', 'important');
-        }
-        
-        // Nạp font chữ Quicksand
-        var linkFont = document.createElement('link');
-        linkFont.rel = 'stylesheet';
-        linkFont.href = 'https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap';
-        document.head.appendChild(linkFont);
-
-        // 2. Tạo màn bao phủ toàn màn hình (Overlay)
-        var overlay = document.createElement('div');
-        overlay.style.setProperty('position', 'fixed', 'important');
-        overlay.style.setProperty('top', '0', 'important');
-        overlay.style.setProperty('left', '0', 'important');
-        overlay.style.setProperty('width', '100vw', 'important');
-        overlay.style.setProperty('height', '100vh', 'important');
-        overlay.style.setProperty('background-color', '#f4f7fe', 'important');
-        overlay.style.setProperty('z-index', '9999999', 'important');
-        overlay.style.setProperty('display', 'flex', 'important');
-        overlay.style.setProperty('justify-content', 'center', 'important');
-        overlay.style.setProperty('align-items', 'center', 'important');
-        overlay.style.setProperty('font-family', '"Quicksand", sans-serif', 'important');
-        overlay.style.setProperty('box-sizing', 'border-box', 'important');
-        overlay.style.setProperty('padding', '20px', 'important');
-
-        // 3. Khối hộp trắng (Card) trung tâm
-        var card = document.createElement('div');
-        card.style.setProperty('background-color', '#ffffff', 'important');
-        card.style.setProperty('border-radius', '32px', 'important');
-        card.style.setProperty('box-shadow', '0 20px 40px rgba(0,0,0,0.04)', 'important');
-        card.style.setProperty('padding', '40px 30px', 'important');
-        card.style.setProperty('width', '100%', 'important');
-        card.style.setProperty('max-width', '420px', 'important');
-        card.style.setProperty('text-align', 'center', 'important');
-        card.style.setProperty('box-sizing', 'border-box', 'important');
-        card.style.setProperty('margin', '0 auto', 'important');
-
-        // 4. Biểu tượng ổ khóa SVG bảo mật
-        var iconWrap = document.createElement('div');
-        iconWrap.style.setProperty('width', '80px', 'important');
-        iconWrap.style.setProperty('height', '80px', 'important');
-        iconWrap.style.setProperty('border-radius', '50%', 'important');
-        iconWrap.style.setProperty('background-color', '#f0f3ff', 'important');
-        iconWrap.style.setProperty('display', 'flex', 'important');
-        iconWrap.style.setProperty('justify-content', 'center', 'important');
-        iconWrap.style.setProperty('align-items', 'center', 'important');
-        iconWrap.style.setProperty('margin', '0 auto 24px', 'important');
-        iconWrap.innerHTML = '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#3b66f5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>';
-
-        // 5. Tiêu đề bản quyền mới
-        var title = document.createElement('h2');
-        title.innerText = 'Bản Quyền Website thuộc về Đặng Hoàng Anh';
-        title.style.setProperty('font-size', '20px', 'important');
-        title.style.setProperty('font-weight', '700', 'important');
-        title.style.setProperty('color', '#1c1f27', 'important');
-        title.style.setProperty('margin', '0 0 14px 0', 'important');
-        title.style.setProperty('line-height', '1.4', 'important');
-
-        // 6. Nội dung mô tả cảnh báo
-        var desc = document.createElement('p');
-        desc.style.setProperty('font-size', '15px', 'important');
-        desc.style.setProperty('color', '#737885', 'important');
-        desc.style.setProperty('line-height', '1.6', 'important');
-        desc.style.setProperty('margin', '0 0 28px 0', 'important');
-        desc.style.setProperty('font-weight', '500', 'important');
-        desc.innerHTML = 'Hệ thống phát hiện bạn đang truy cập từ một trang web sao chép trái phép nội dung giao diện.';
-
-        // 7. Đồng hồ đếm ngược thiết lập 10 giây
-        var countdown = document.createElement('p');
-        countdown.style.setProperty('font-size', '14px', 'important');
-        countdown.style.setProperty('color', '#a0a5b1', 'important');
-        countdown.style.setProperty('margin', '0', 'important');
-        countdown.style.setProperty('font-weight', '500', 'important');
-        
-        var secondsLeft = 10;
-        countdown.innerHTML = 'Tự động chuyển hướng về Website chính thức sau <span id="dhanhaov-countdown-num" style="color:#3b66f5;font-weight:700;">' + secondsLeft + '</span>s';
-
-        // Gắn các phần tử vào giao diện card
-        card.appendChild(iconWrap);
-        card.appendChild(title);
-        card.appendChild(desc);
-        card.appendChild(countdown);
-        overlay.appendChild(card);
-        document.body.appendChild(overlay);
-
-        // 8. Vòng lặp đếm ngược thời gian thực (Giảm từ 10 về 0)
-        var timer = setInterval(function() {
-            secondsLeft--;
-            var numSpan = document.getElementById('dhanhaov-countdown-num');
-            if (numSpan) numSpan.innerText = secondsLeft;
-            
-            if (secondsLeft <= 0) {
-                clearInterval(timer);
-                window.location.href = 'https://dhanhhdzs1tg.github.io';
+        if (allowedDomains.indexOf(currentHostname) === -1) {
+            document.documentElement.style.setProperty('overflow', 'hidden', 'important');
+            if (document.body) {
+                document.body.style.setProperty('overflow', 'hidden', 'important');
+                document.body.style.setProperty('margin', '0', 'important');
+                document.body.style.setProperty('padding', '0', 'important');
             }
-        }, 1000);
-    }
-})();
+            
+            var linkFont = document.createElement('link');
+            linkFont.rel = 'stylesheet';
+            linkFont.href = 'https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap';
+            document.head.appendChild(linkFont);
+
+            var overlay = document.createElement('div');
+            overlay.style.setProperty('position', 'fixed', 'important');
+            overlay.style.setProperty('top', '0', 'important');
+            overlay.style.setProperty('left', '0', 'important');
+            overlay.style.setProperty('width', '100vw', 'important');
+            overlay.style.setProperty('height', '100vh', 'important');
+            overlay.style.setProperty('background-color', '#f4f7fe', 'important');
+            overlay.style.setProperty('z-index', '9999999', 'important');
+            overlay.style.setProperty('display', 'flex', 'important');
+            overlay.style.setProperty('justify-content', 'center', 'important');
+            overlay.style.setProperty('align-items', 'center', 'important');
+            overlay.style.setProperty('font-family', '"Quicksand", sans-serif', 'important');
+            overlay.style.setProperty('box-sizing', 'border-box', 'important');
+            overlay.style.setProperty('padding', '20px', 'important');
+
+            var card = document.createElement('div');
+            card.style.setProperty('background-color', '#ffffff', 'important');
+            card.style.setProperty('border-radius', '32px', 'important');
+            card.style.setProperty('box-shadow', '0 20px 40px rgba(0,0,0,0.04)', 'important');
+            card.style.setProperty('padding', '40px 30px', 'important');
+            card.style.setProperty('width', '100%', 'important');
+            card.style.setProperty('max-width', '420px', 'important');
+            card.style.setProperty('text-align', 'center', 'important');
+            card.style.setProperty('box-sizing', 'border-box', 'important');
+            card.style.setProperty('margin', '0 auto', 'important');
+
+            var iconWrap = document.createElement('div');
+            iconWrap.style.setProperty('width', '80px', 'important');
+            iconWrap.style.setProperty('height', '80px', 'important');
+            iconWrap.style.setProperty('border-radius', '50%', 'important');
+            iconWrap.style.setProperty('background-color', '#f0f3ff', 'important');
+            iconWrap.style.setProperty('display', 'flex', 'important');
+            iconWrap.style.setProperty('justify-content', 'center', 'important');
+            iconWrap.style.setProperty('align-items', 'center', 'important');
+            iconWrap.style.setProperty('margin', '0 auto 24px', 'important');
+            iconWrap.innerHTML = '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#3b66f5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>';
+
+            var title = document.createElement('h2');
+            title.innerText = 'Bản Quyền Website thuộc về Đặng Hoàng Anh';
+            title.style.setProperty('font-size', '20px', 'important');
+            title.style.setProperty('font-weight', '700', 'important');
+            title.style.setProperty('color', '#1c1f27', 'important');
+            title.style.setProperty('margin', '0 0 14px 0', 'important');
+            title.style.setProperty('line-height', '1.4', 'important');
+
+            var desc = document.createElement('p');
+            desc.style.setProperty('font-size', '15px', 'important');
+            desc.style.setProperty('color', '#737885', 'important');
+            desc.style.setProperty('line-height', '1.6', 'important');
+            desc.style.setProperty('margin', '0 0 28px 0', 'important');
+            desc.style.setProperty('font-weight', '500', 'important');
+            desc.innerHTML = 'Hệ thống phát hiện bạn đang truy cập từ một trang web sao chép trái phép nội dung giao diện.';
+
+            var countdown = document.createElement('p');
+            countdown.style.setProperty('font-size', '14px', 'important');
+            countdown.style.setProperty('color', '#a0a5b1', 'important');
+            countdown.style.setProperty('margin', '0', 'important');
+            countdown.style.setProperty('font-weight', '500', 'important');
+            
+            var secondsLeft = 10;
+            countdown.innerHTML = 'Tự động chuyển hướng về Website chính thức sau <span id="dhanhaov-countdown-num" style="color:#3b66f5;font-weight:700;">' + secondsLeft + '</span>s';
+
+            card.appendChild(iconWrap);
+            card.appendChild(title);
+            card.appendChild(desc);
+            card.appendChild(countdown);
+            overlay.appendChild(card);
+            document.body.appendChild(overlay);
+
+            var timer = setInterval(function() {
+                secondsLeft--;
+                var numSpan = document.getElementById('dhanhaov-countdown-num');
+                if (numSpan) numSpan.innerText = secondsLeft;
+                
+                if (secondsLeft <= 0) {
+                    clearInterval(timer);
+                    window.location.href = 'https://dhanhhdzs1tg.github.io';
+                }
+            }, 1000);
+        }
+    })();
 </script>
 </body>
 </html>
