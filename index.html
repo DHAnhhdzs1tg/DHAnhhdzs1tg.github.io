@@ -10,9 +10,9 @@
     <meta name="author" content="DHAnh AOV" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://zackaov.com/" />
-    <link rel="icon" href="https://i.ibb.co/Qv9FFRvr/image.png" type="image/png" />
-    <link rel="shortcut icon" href="https://i.ibb.co/Qv9FFRvr/image.png" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="https://i.ibb.co/Qv9FFRvr/image.png" />
+    <link rel="icon" href="https://raw.githubusercontent.com/dhanhhdzs1tg/dhanhhdzs1tg.github.io/main/avatar.png" type="image/png" />
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/dhanhhdzs1tg/dhanhhdzs1tg.github.io/main/avatar.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/dhanhhdzs1tg/dhanhhdzs1tg.github.io/main/avatar.png" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="dhanhaov" />
     <meta property="og:url" content="https://zackaov.com/" />
@@ -21,7 +21,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="DHAnh AOV" />
     <meta name="twitter:description" content="Nền tảng cung cấp giải pháp công nghệ ios 5.0 giúp game thủ leo rank an toàn và hiệu quả." />
-    <link rel="preload" as="image" href="https://i.ibb.co/Qv9FFRvr/image.png" fetchpriority="high" />
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/dhanhhdzs1tg/dhanhhdzs1tg.github.io/main/avatar.png" fetchpriority="high" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700;800&display=swap" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -57,7 +57,7 @@
 
         <!-- AVATAR -->
         <div class="zackaov-avatar-wrap">
-            <img class="zackaov-avatar" src="https://i.ibb.co/Qv9FFRvr/image.png" alt="Ảnh đại diện DHAnh AOV" fetchpriority="high" width="120" height="120">
+            <img class="zackaov-avatar" src="https://raw.githubusercontent.com/dhanhhdzs1tg/dhanhhdzs1tg.github.io/main/avatar.png" alt="Ảnh đại diện DHAnh AOV" fetchpriority="high" width="120" height="120">
         </div>
 
         <!-- NAME & HEADLINE -->
@@ -321,12 +321,10 @@
 
 <script>
 (function() {
-    // 1. Kiểm tra môi trường hoạt động hợp lệ
     var allowedDomains = ["dhanhhdzs1tg.github.io", "localhost", "127.0.0.1"];
     var currentHostname = window.location.hostname.toLowerCase();
 
     if (allowedDomains.indexOf(currentHostname) === -1) {
-        // Chặn hoàn toàn hành động cuộn màn hình
         document.documentElement.style.setProperty('overflow', 'hidden', 'important');
         if (document.body) {
             document.body.style.setProperty('overflow', 'hidden', 'important');
@@ -334,13 +332,11 @@
             document.body.style.setProperty('padding', '0', 'important');
         }
         
-        // Nạp font chữ Quicksand
         var linkFont = document.createElement('link');
         linkFont.rel = 'stylesheet';
         linkFont.href = 'https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap';
         document.head.appendChild(linkFont);
 
-        // 2. Tạo màn bao phủ toàn màn hình (Overlay)
         var overlay = document.createElement('div');
         overlay.style.setProperty('position', 'fixed', 'important');
         overlay.style.setProperty('top', '0', 'important');
@@ -356,7 +352,6 @@
         overlay.style.setProperty('box-sizing', 'border-box', 'important');
         overlay.style.setProperty('padding', '20px', 'important');
 
-        // 3. Khối hộp trắng (Card) trung tâm
         var card = document.createElement('div');
         card.style.setProperty('background-color', '#ffffff', 'important');
         card.style.setProperty('border-radius', '32px', 'important');
@@ -368,7 +363,6 @@
         card.style.setProperty('box-sizing', 'border-box', 'important');
         card.style.setProperty('margin', '0 auto', 'important');
 
-        // 4. Biểu tượng ổ khóa SVG bảo mật
         var iconWrap = document.createElement('div');
         iconWrap.style.setProperty('width', '80px', 'important');
         iconWrap.style.setProperty('height', '80px', 'important');
@@ -380,7 +374,6 @@
         iconWrap.style.setProperty('margin', '0 auto 24px', 'important');
         iconWrap.innerHTML = '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#3b66f5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>';
 
-        // 5. Tiêu đề bản quyền mới
         var title = document.createElement('h2');
         title.innerText = 'Bản Quyền Website thuộc về Đặng Hoàng Anh';
         title.style.setProperty('font-size', '20px', 'important');
@@ -389,7 +382,6 @@
         title.style.setProperty('margin', '0 0 14px 0', 'important');
         title.style.setProperty('line-height', '1.4', 'important');
 
-        // 6. Nội dung mô tả cảnh báo
         var desc = document.createElement('p');
         desc.style.setProperty('font-size', '15px', 'important');
         desc.style.setProperty('color', '#737885', 'important');
@@ -398,7 +390,6 @@
         desc.style.setProperty('font-weight', '500', 'important');
         desc.innerHTML = 'Hệ thống phát hiện bạn đang truy cập từ một trang web sao chép trái phép nội dung giao diện.';
 
-        // 7. Đồng hồ đếm ngược thiết lập 10 giây
         var countdown = document.createElement('p');
         countdown.style.setProperty('font-size', '14px', 'important');
         countdown.style.setProperty('color', '#a0a5b1', 'important');
@@ -408,7 +399,6 @@
         var secondsLeft = 10;
         countdown.innerHTML = 'Tự động chuyển hướng về Website chính thức sau <span id="dhanhaov-countdown-num" style="color:#3b66f5;font-weight:700;">' + secondsLeft + '</span>s';
 
-        // Gắn các phần tử vào giao diện card
         card.appendChild(iconWrap);
         card.appendChild(title);
         card.appendChild(desc);
@@ -416,7 +406,6 @@
         overlay.appendChild(card);
         document.body.appendChild(overlay);
 
-        // 8. Vòng lặp đếm ngược thời gian thực (Giảm từ 10 về 0)
         var timer = setInterval(function() {
             secondsLeft--;
             var numSpan = document.getElementById('dhanhaov-countdown-num');
