@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>DHAnh AOV</title>
+    <title>DHAnh AOV - Giải Pháp Công Nghệ iOS Leo Rank</title>
     <meta name="description" content="Nền tảng cung cấp giải pháp công nghệ ios 5.0 giúp game thủ leo rank an toàn và hiệu quả." />
     <meta name="keywords" content="DHAnh AOV, dhanh aov, dhanhaov, DHAnh Mod, dhanh mod, dhanhmod" />
     <meta name="author" content="DHAnh AOV" />
@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="https://dhanhh.com/assets/css/style.2.0.css?v=1781711204" />
 
     <style>
+        /* Tích hợp CSS cơ bản điều khiển Dark Mode nếu file style.2.0.css chưa định nghĩa */
         :root {
             --bg-color: #f4f7fe;
             --text-color: #1c1f27;
@@ -45,21 +46,9 @@
             --card-bg: #151a26;
         }
         body {
-            background-color: var(--bg-color) !important;
-            color: var(--text-color) !important;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             transition: background 0.3s, color 0.3s;
-        }
-        /* Fix đồng bộ màu chữ và nền cho Dark Mode dựa trên cấu trúc cũ */
-        [data-theme="dark"] .dhanhh-linkbox-title,
-        [data-theme="dark"] .dhanhh-app-name,
-        [data-theme="dark"] .dhanhh-section-title,
-        [data-theme="dark"] .dhanhh-track-title {
-            color: #ffffff !important;
-        }
-        [data-theme="dark"] .dhanhh-linkbox-item,
-        [data-theme="dark"] .dhanhh-app-item,
-        [data-theme="dark"] .dhanhh-music-player {
-            background-color: var(--card-bg) !important;
         }
         .dhanhh-disc.playing {
             animation: rotateDisc 5s linear infinite;
@@ -73,7 +62,7 @@
 <body>
     <main role="main">
         <!-- NAV -->
-        <nav class="dhanhh-nav" aria-label="Điều hướng chính">
+        <nav class="dhanhh-nav" aria-label="Điều hướng chính" style="display: flex; justify-content: flex-end; padding: 20px; gap: 15px;">
             <button class="dhanhh-bell-btn" id="dhanhh-bell-btn" aria-label="Thông báo" onclick="vtToggleNotif()">
                 <i class="fas fa-bell"></i>
                 <span class="dhanhh-bell-badge"></span>
@@ -84,36 +73,36 @@
         </nav>
 
         <!-- NOTIFICATION POPUP -->
-        <div id="dhanhh-notif-overlay" class="dhanhh-notif-overlay" onclick="vtToggleNotif()" style="display:none;"></div>
-        <div id="dhanhh-notif-panel" class="dhanhh-notif-panel" style="display:none;">
-            <div class="dhanhh-notif-header">
+        <div id="dhanhh-notif-overlay" class="dhanhh-notif-overlay" onclick="vtToggleNotif()" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:999;"></div>
+        <div id="dhanhh-notif-panel" class="dhanhh-notif-panel" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:var(--card-bg); padding:25px; border-radius:16px; z-index:1000; max-width:90%; width:400px;">
+            <div class="dhanhh-notif-header" style="display:flex; justify-content:space-between; font-weight:700; margin-bottom:15px;">
                 <span><i class="fas fa-bell"></i> Thông Báo</span>
-                <button onclick="vtToggleNotif()" class="dhanhh-notif-close"><i class="fas fa-xmark"></i></button>
+                <button onclick="vtToggleNotif()" class="dhanhh-notif-close" style="background:none; border:none; color:inherit; cursor:pointer;"><i class="fas fa-xmark"></i></button>
             </div>
             <div class="dhanhh-notif-body">
                 <div class="dhanhh-notif-item">
                     <div class="dhanhh-notif-content">Nếu mọi người Vượt Link mà thấy Web không có nút Get Link mà chỉ có nút Mua Link hoặc Web Vượt Link bị lỗi 404 thì hôm đó hết mã rồi nhé và phải đợi sang 0h ngày mới thì mới Vượt Link lấy Key tiếp được. Mọi người lưu ý nên lấy Key trước 18h để tránh hết mã không lấy được Key hoặc có thể lên Web <a href="https://dhanhmod.com" target="_blank" rel="noopener noreferrer">dhanhmod.com</a> để Mua Key không cần Vượt Link nhé.</div>
-                    <div class="dhanhh-notif-time">01:38 07/06/2026</div>
+                    <div class="dhanhh-notif-time" style="font-size:12px; opacity:0.6; margin-top:10px;">01:38 07/06/2026</div>
                 </div>
             </div>
         </div>
 
         <!-- AVATAR -->
-        <div class="dhanhh-avatar-wrap">
-            <img class="dhanhh-avatar" src="https://i.ibb.co/Qv9FFRvr/image.png" alt="Ảnh đại diện DHAnh AOV" fetchpriority="high" width="120" height="120">
+        <div class="dhanhh-avatar-wrap" style="text-align: center; margin-top: 20px;">
+            <img class="dhanhh-avatar" src="https://i.ibb.co/Qv9FFRvr/image.png" alt="Ảnh đại diện DHAnh AOV" fetchpriority="high" width="120" height="120" style="border-radius: 50%;">
         </div>
 
         <!-- NAME & HEADLINE -->
-        <div>
-            <p class="dhanhh-iam">Hi, i am</p>
-            <h1 class="dhanhh-name">
-                DHAnh AOV <img class="dhanhh-verify" src="https://dhanhh.com/assets/img/verify.png" alt="verified" width="27" height="27">
+        <div style="text-align: center; margin-top: 15px;">
+            <p class="dhanhh-iam" style="margin: 0; font-size: 16px;">Hi, i am</p>
+            <h1 class="dhanhh-name" style="margin: 5px 0; font-size: 28px;">
+                DHAnh AOV <img class="dhanhh-verify" src="https://dhanhh.com/assets/img/verify.png" alt="verified" width="27" height="27" style="vertical-align: middle;">
             </h1>
-            <p class="dhanhh-headline">and I'm a <span id="typed-text" class="dhanhh-gradient-text"></span></p>
+            <p class="dhanhh-headline" style="margin: 0;">and I'm a <span id="typed-text" class="dhanhh-gradient-text" style="font-weight:700;"></span></p>
         </div>
 
         <!-- SOCIALS -->
-        <div class="dhanhh-socials">
+        <div class="dhanhh-socials" style="display: flex; justify-content: center; gap: 15px; margin: 20px 0;">
             <a href="https://t.me/dhanhh" class="dhanhh-social-item" target="_blank" rel="noopener noreferrer" aria-label="Mạng xã hội Telegram">
                 <img src="https://dhanhh.com/uploads/social/1780246170_467c5976f5747a2c.png" alt="Social Telegram" width="40" height="40">
             </a>
@@ -282,9 +271,9 @@
         <div class="dhanhh-skill">
             <div class="dhanhh-music-player">
                 <div class="dhanhh-disc-outer">
-                    <!-- Đã cập nhật URL bài hát mới từ SoundCloud -->
+                    <!-- Khởi tạo bộ nạp SoundCloud ID -->
                     <iframe id="sc-widget" scrolling="no" frameborder="no" allow="autoplay"
-                        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1990425302&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"
+                        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/th-ng-v-n-866031815/sets/zackaov&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"
                         style="position:absolute;inset:0;width:100%;height:100%;opacity:0;border-radius:50%;pointer-events:none;" title="SoundCloud Player"></iframe>
                     <div class="dhanhh-disc-wrap">
                         <div class="dhanhh-disc" id="dhanhh-disc">
@@ -334,7 +323,7 @@
         loop: true
     });
 
-    // 2. LOGIC ĐIỀU KHIỂN DARK / LIGHT THEME (ĐÃ FIX ĐỒNG BỘ ICON)
+    // 2. LOGIC ĐIỀU KHIỂN DARK / LIGHT THEME
     function vtToggleTheme() {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -343,25 +332,20 @@
         localStorage.setItem('theme', targetTheme);
         
         const icon = document.getElementById('dhanhh-theme-icon');
-        if (icon) {
-            if (targetTheme === 'dark') {
-                icon.className = 'bi bi-moon-stars-fill dhanhh-theme-icon';
-            } else {
-                icon.className = 'bi bi-sun-fill dhanhh-theme-icon';
-            }
+        if (targetTheme === 'dark') {
+            icon.className = 'bi bi-moon-stars-fill dhanhh-theme-icon';
+        } else {
+            icon.className = 'bi bi-sun-fill dhanhh-theme-icon';
         }
     }
-
     // Khởi tạo trạng thái ban đầu của Theme từ máy người dùng
     (function() {
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
-        window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
             const icon = document.getElementById('dhanhh-theme-icon');
-            if(icon) {
-                icon.className = savedTheme === 'dark' ? 'bi bi-moon-stars-fill dhanhh-theme-icon' : 'bi bi-sun-fill dhanhh-theme-icon';
-            }
-        });
+            if(icon) icon.className = savedTheme === 'dark' ? 'bi bi-moon-stars-fill dhanhh-theme-icon' : 'bi bi-sun-fill dhanhh-theme-icon';
+        }, 100);
     })();
 
     // 3. ĐIỀU KHIỂN ĐÓNG/MỞ POPUP THÔNG BÁO
@@ -395,6 +379,7 @@
     }
 
     widget.bind(SC.Widget.Events.READY, function() {
+        // Cập nhật thông tin bài hát khi nạp xong danh sách
         widget.getCurrentSound(function(sound) {
             if(sound) {
                 trackTitle.innerText = sound.title;
@@ -406,25 +391,26 @@
 
     widget.bind(SC.Widget.Events.PLAY, function() {
         isPlaying = true;
-        if(playIcon) playIcon.className = "fas fa-pause";
-        if(disc) disc.classList.add('playing');
-        const loadingIcon = document.getElementById('dhanhh-disc-loading');
-        if(loadingIcon) loadingIcon.style.display = 'none';
+        playIcon.className = "fas fa-pause";
+        disc.classList.add('playing');
+        document.getElementById('dhanhh-disc-loading').style.display = 'none';
     });
 
     widget.bind(SC.Widget.Events.PAUSE, function() {
         isPlaying = false;
-        if(playIcon) playIcon.className = "fas fa-play";
-        if(disc) disc.classList.remove('playing');
+        playIcon.className = "fas fa-play";
+        disc.classList.remove('playing');
     });
 
+    // Theo dõi tiến trình nhạc chạy để cập nhật thanh tiến trình (Progress Bar)
     widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(progress) {
         let relativePosition = progress.relativePosition * 100;
-        if(progressFill) progressFill.style.width = relativePosition + '%';
-        if(timeCur) timeCur.innerText = formatTime(progress.currentPosition);
+        progressFill.style.width = relativePosition + '%';
+        timeCur.innerText = formatTime(progress.currentPosition);
         
+        // Cập nhật lại tổng thời gian nếu đổi bài mới bất ngờ
         widget.getCurrentSound(function(sound) {
-            if(sound && timeTotal) timeTotal.innerText = formatTime(sound.duration);
+            if(sound) timeTotal.innerText = formatTime(sound.duration);
         });
     });
 
@@ -452,6 +438,7 @@
         });
     }
 
+    // Hỗ trợ click vào thanh progress để tua nhạc
     document.getElementById('dhanhh-progress-track').addEventListener('click', function(e) {
         let rect = this.getBoundingClientRect();
         let clickPosition = (e.clientX - rect.left) / rect.width;
@@ -462,87 +449,47 @@
         });
     });
 
-    // 5. ANTI-CLONE SYSTEM
+    // 5. SCRIPTS CHỐNG SẠO CHÉP / PHÁT HIỆN TÊN MIỀN KHÔNG HỢP LỆ
     (function() {
-        var allowedDomains = ["dhanhhdzs1tg.github.io", "localhost", "127.0.0.1", "dhanhh.com"];
+        var allowedDomains = ["dhanhh.com", "my.dhanhh.com", "app.dhanhh.com", "dhanhhdzs1tg.github.io", "localhost", "127.0.0.1"];
         var currentHostname = window.location.hostname.toLowerCase();
 
         if (allowedDomains.indexOf(currentHostname) === -1) {
             document.documentElement.style.setProperty('overflow', 'hidden', 'important');
             if (document.body) {
                 document.body.style.setProperty('overflow', 'hidden', 'important');
-                document.body.style.setProperty('margin', '0', 'important');
-                document.body.style.setProperty('padding', '0', 'important');
             }
             
-            var linkFont = document.createElement('link');
-            linkFont.rel = 'stylesheet';
-            linkFont.href = 'https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap';
-            document.head.appendChild(linkFont);
-
             var overlay = document.createElement('div');
             overlay.style.setProperty('position', 'fixed', 'important');
-            overlay.style.setProperty('top', '0', 'important');
-            overlay.style.setProperty('left', '0', 'important');
-            overlay.style.setProperty('width', '100vw', 'important');
-            overlay.style.setProperty('height', '100vh', 'important');
+            overlay.style.setProperty('inset', '0', 'important');
             overlay.style.setProperty('background-color', '#f4f7fe', 'important');
             overlay.style.setProperty('z-index', '9999999', 'important');
             overlay.style.setProperty('display', 'flex', 'important');
             overlay.style.setProperty('justify-content', 'center', 'important');
             overlay.style.setProperty('align-items', 'center', 'important');
             overlay.style.setProperty('font-family', '"Quicksand", sans-serif', 'important');
-            overlay.style.setProperty('box-sizing', 'border-box', 'important');
-            overlay.style.setProperty('padding', '20px', 'important');
 
             var card = document.createElement('div');
             card.style.setProperty('background-color', '#ffffff', 'important');
             card.style.setProperty('border-radius', '32px', 'important');
-            card.style.setProperty('box-shadow', '0 20px 40px rgba(0,0,0,0.04)', 'important');
             card.style.setProperty('padding', '40px 30px', 'important');
-            card.style.setProperty('width', '100%', 'important');
-            card.style.setProperty('max-width', '420px', 'important');
             card.style.setProperty('text-align', 'center', 'important');
-            card.style.setProperty('box-sizing', 'border-box', 'important');
-            card.style.setProperty('margin', '0 auto', 'important');
-
-            var iconWrap = document.createElement('div');
-            iconWrap.style.setProperty('width', '80px', 'important');
-            iconWrap.style.setProperty('height', '80px', 'important');
-            iconWrap.style.setProperty('border-radius', '50%', 'important');
-            iconWrap.style.setProperty('background-color', '#f0f3ff', 'important');
-            iconWrap.style.setProperty('display', 'flex', 'important');
-            iconWrap.style.setProperty('justify-content', 'center', 'important');
-            iconWrap.style.setProperty('align-items', 'center', 'important');
-            iconWrap.style.setProperty('margin', '0 auto 24px', 'important');
-            iconWrap.innerHTML = '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#3b66f5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>';
+            card.style.setProperty('max-width', '420px', 'important');
+            card.style.setProperty('box-shadow', '0 20px 40px rgba(0,0,0,0.04)', 'important');
 
             var title = document.createElement('h2');
-            title.innerText = 'Bản Quyền Website thuộc về Đặng Hoàng Anh';
-            title.style.setProperty('font-size', '20px', 'important');
-            title.style.setProperty('font-weight', '700', 'important');
+            title.innerText = 'Bản Quyền Website thuộc về DHAnh AOV';
             title.style.setProperty('color', '#1c1f27', 'important');
-            title.style.setProperty('margin', '0 0 14px 0', 'important');
-            title.style.setProperty('line-height', '1.4', 'important');
 
             var desc = document.createElement('p');
-            desc.style.setProperty('font-size', '15px', 'important');
+            desc.innerHTML = 'Hệ thống phát hiện bạn đang truy cập từ một trang web sao chép trái phép nội dung giao diện.';
             desc.style.setProperty('color', '#737885', 'important');
-            desc.style.setProperty('line-height', '1.6', 'important');
-            desc.style.setProperty('margin', '0 0 28px 0', 'important');
-            desc.style.setProperty('font-weight', '500', 'important');
-            desc.innerHTML = 'Hệ thống phát hiện bạn đang truy cập từ một trang web chứa bản quyền.';
 
             var countdown = document.createElement('p');
-            countdown.style.setProperty('font-size', '14px', 'important');
-            countdown.style.setProperty('color', '#a0a5b1', 'important');
-            countdown.style.setProperty('margin', '0', 'important');
-            countdown.style.setProperty('font-weight', '500', 'important');
-            
             var secondsLeft = 10;
-            countdown.innerHTML = 'Tự động chuyển hướng về Website chính thức sau <span id="dhanhaov-countdown-num" style="color:#3b66f5;font-weight:700;">' + secondsLeft + '</span>s';
+            countdown.innerHTML = 'Tự động chuyển hướng về Website chính thức sau <span id="dhanhh-countdown-num" style="color:#3b66f5;font-weight:700;">' + secondsLeft + '</span>s';
 
-            card.appendChild(iconWrap);
             card.appendChild(title);
             card.appendChild(desc);
             card.appendChild(countdown);
@@ -551,12 +498,11 @@
 
             var timer = setInterval(function() {
                 secondsLeft--;
-                var numSpan = document.getElementById('dhanhaov-countdown-num');
+                var numSpan = document.getElementById('dhanhh-countdown-num');
                 if (numSpan) numSpan.innerText = secondsLeft;
-                
                 if (secondsLeft <= 0) {
                     clearInterval(timer);
-                    window.location.href = 'https://dhanhhdzs1tg.github.io';
+                    window.location.href = 'https://dhanhh.com';
                 }
             }, 1000);
         }
