@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap');
 
 :root {
   --bg-light: linear-gradient(to bottom, #c2feff, #dbefff);
@@ -37,7 +37,7 @@
 }
 
 body {
-font-family:'Quicksand',sans-serif;
+  font-family:'Montserrat',sans-serif;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -77,45 +77,30 @@ body.dark .toggle {
 }
 
 /* ===== AVATAR ===== */
-
-.avatar-box{
-    position:relative;
-    width:165px;
-    height:165px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin:35px 0;
-}
-
-
-
-/* Nếu đang Light Mode */
-
-body:not(.dark) .avatar-border::before{
-
-    background:#dbefff;
-
+.avatar {
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  object-fit:cover;
+  margin:30px 0;
 }
 
 /* ===== TEXT ===== */
-
 .intro-line {
   font-size:20px;
   margin:10px 0;
   font-weight:600;
-  letter-spacing:0.5px;
 }
 
 .name-wrapper {
   font-size:34px;
   font-weight:700;
-  letter-spacing:0.5px;
   display:flex;
   align-items:center;
   gap:8px;
   margin-bottom:20px;
 }
+
 /* ===== TICK XANH TĨNH ===== */
 .checkmark {
   width:24px;
@@ -433,15 +418,7 @@ footer {
 
 <div class="toggle" id="toggle">🌑</div>
 
-<div class="avatar-box">
-
-    <div class="avatar-border"></div>
-
-    <img src="https://i.ibb.co/qMwqm7Rm/avatar.jpg" class="avatar">
-
-    <div class="warning">!</div>
-
-</div>
+<img src="https://i.ibb.co/qMwqm7Rm/avatar.jpg" class="avatar">
 
 <div class="intro-line">Hi, I am</div>
 
