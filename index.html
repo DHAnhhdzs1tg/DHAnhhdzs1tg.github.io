@@ -334,6 +334,50 @@ body.dark .dhanh-play-toggle {
 }@keyframes electric {to {transform:scale(25);opacity:0}
 }
 
+/* ===== WELCOME MODAL ===== */
+.text-gradient {
+  background: linear-gradient(90deg, #00eaff, #ff007f, #00eaff);
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 3s infinite linear;
+  font-weight: 800;
+}
+
+.modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+.modal-overlay.active { opacity: 1; visibility: visible; }
+
+.modal-content {
+  background: var(--card-light);
+  padding: 30px;
+  border-radius: 24px;
+  width: 80%;
+  max-width: 350px;
+  text-align: center;
+  border: 1px solid var(--border-light);
+  backdrop-filter: blur(15px);
+}
+body.dark .modal-content { background: var(--card-dark); border: 1px solid var(--border-dark); }
+
+.modal-icon { font-size: 40px; margin-bottom: 10px; }
+.modal-actions { display: flex; gap: 10px; margin-top: 20px; }
+.modal-btn { flex: 1; padding: 12px; border: none; border-radius: 12px; cursor: pointer; font-weight: 700; transition: 0.3s; }
+.modal-btn.close { background: #eee; color: #333; }
+.modal-btn.hide { background: #1877f2; color: #fff; }
+body.dark .modal-btn.close { background: #333; color: #fff; }
+
+  
 /* ===== EFFECTS CONTAINER (SNOW & SAKURA) ===== */
 #snowflakeContainer {
   position:absolute;
@@ -595,6 +639,27 @@ window.addEventListener('touchstart', () => {
     }).catch(()=>{});
   }
 }, { once: true });
+// Logic hiển thị Modal
+function showModal() {
+  const hiddenUntil = localStorage.getItem('hideModalUntil');
+  const now = new Date().getTime();
+  if (!hiddenUntil || now > parseInt(hiddenUntil)) {
+    document.getElementById("welcomeModal").classList.add("active");
+  }
+}
+
+function closeModal() {
+  document.getElementById("welcomeModal").classList.remove("active");
+}
+
+function hideForOneHour() {
+  const oneHourLater = new Date().getTime() + (60 * 60 * 1000);
+  localStorage.setItem('hideModalUntil', oneHourLater);
+  closeModal();
+}
+
+// Gọi hàm ngay khi load xong trang
+window.addEventListener('load', showModal);
 
 /* ===== ANTI-CLONE DOMAIN PROTECT ===== */
 (function() {
@@ -804,6 +869,21 @@ function moveSnowflakes(){
   requestAnimationFrame(moveSnowflakes);
 }
 </script>
+<div id="welcomeModal" class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-icon">⚠️</div>
+    <h3 class="text-gradient">ĐỌC KĨ TRƯỚC KHI SỬ DỤNG</h3>
+    <p style="text-align: left; line-height: 1.6; font-size: 14px; margin-top: 10px;">
+      <b>LƯU Ý:</b> Nên <b>Get Key</b> trước khi vào Liên Quân để tránh bị lỗi.<br><br>
+      • Mua Key không cần vượt link: 
+      <a href="https://zalo.me/0888175797" target="_blank" class="text-gradient" style="text-decoration: underline;">Bấm Vào Đây</a>
+    </p>
+    <div class="modal-actions">
+      <button class="modal-btn close" onclick="closeModal()">Đóng</button>
+      <button class="modal-btn hide" onclick="hideForOneHour()">Ẩn 1H</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
