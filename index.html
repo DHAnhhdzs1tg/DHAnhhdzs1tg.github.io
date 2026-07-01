@@ -326,15 +326,24 @@ body.dark .dhanh-play-toggle {
 }
 
 /* ===== ELECTRIC CLICK ===== */
+a, .toggle, .dhanh-btn, .dhanh-play-toggle {
+  position: relative;
+  overflow: hidden;
+}
+
 .electric {
-  position:absolute;
-  width:4px;
-  height:4px;
-  background:var(--neon);
-  border-radius:50%;
-  animation:electric .4s linear;
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--neon);
+  border-radius: 50%;
+  animation: electric .4s linear forwards;
   pointer-events: none;
-}@keyframes electric {to {transform:scale(25);opacity:0}
+  transform: translate(-50%, -50%);
+}
+
+@keyframes electric {
+  to { transform: translate(-50%, -50%) scale(25); opacity: 0; }
 }
 
 /* ===== WELCOME MODAL ===== */
@@ -593,14 +602,18 @@ toggle.onclick=()=>{
 }
 
 /* Electric click effect */
-document.querySelectorAll("a, .toggle, .dhanh-btn, .dhanh-play-toggle").forEach(btn=>{
-  btn.addEventListener("click",e=>{
-    const s=document.createElement("span");
-    s.className="electric";
-    s.style.left=e.offsetX+"px";
-    s.style.top=e.offsetY+"px";
+document.querySelectorAll("a, .toggle, .dhanh-btn, .dhanh-play-toggle").forEach(btn => {
+  btn.addEventListener("click", e => {
+    const s = document.createElement("span");
+    s.className = "electric";
+    
+    // Sửa lại cách lấy tọa độ để không bị lệch khi click vào icon bên trong
+    const rect = btn.getBoundingClientRect();
+    s.style.left = (e.clientX - rect.left) + "px";
+    s.style.top = (e.clientY - rect.top) + "px";
+    
     btn.appendChild(s);
-    setTimeout(()=>s.remove(),400);
+    setTimeout(() => s.remove(), 400);
   });
 });
 
